@@ -1,0 +1,3653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NASA Major Projects — Quick Look (GAO-25-107591)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{
+    /* Government-document neutrals */
+    --paper:#f7f4ec;
+    --paper-2:#ffffff;
+    --ink:#13181f;
+    --ink-2:#31404f;
+    --ink-3:#5d6b7a;
+    --rule:#c9c0ae;
+    --rule-2:#e4ddcc;
+
+    /* GAO/NASA palette */
+    --nasa-blue:#0b3d91;
+    --nasa-blue-ink:#082a66;
+    --nasa-red:#bf2d1e;
+
+    /* Status — kept familiar to GAO readers but pulled toward print ink */
+    --st-green:#1f7a3a;
+    --st-green-bg:#e4f0df;
+    --st-yellow:#9a6b00;
+    --st-yellow-bg:#f6ecc7;
+    --st-red:#a6231a;
+    --st-red-bg:#f4ddd8;
+    --st-gray:#5d6b7a;
+    --st-gray-bg:#e6e1d3;
+
+    --shadow-card:0 1px 0 rgba(19,24,31,.04), 0 2px 4px rgba(19,24,31,.04);
+    --shadow-pop:0 16px 48px rgba(19,24,31,.18);
+  }
+
+  html,body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',system-ui,Segoe UI,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh}
+
+  a{color:var(--nasa-blue);text-underline-offset:3px}
+
+  /* ───────── HEADER ───────── */
+  header.site{
+    background:var(--paper-2);
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead{
+    max-width:1440px;margin:0 auto;
+    padding:20px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:18px}
+  .seal{
+    width:56px;height:56px;border-radius:50%;
+    background:var(--nasa-blue);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:14px;letter-spacing:.02em;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.18);
+    flex-shrink:0;
+  }
+  .brand h1{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;font-size:26px;line-height:1.25;letter-spacing:-.005em;color:var(--ink);
+  }
+  .brand .eyebrow{
+    font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+    margin-bottom:4px;
+  }
+  .brand .report-id{font-size:14px;color:var(--ink-2);margin-top:8px}
+  @media (max-width:1100px){
+    .brand h1{font-size:22px}
+  }
+  .brand .report-id strong{color:var(--ink);font-weight:600}
+
+  .header-meta{font-size:14px;color:var(--ink-2);text-align:right;line-height:1.35}
+  .header-meta .dateline{font-weight:600;color:var(--ink)}
+
+  /* ───────── AT-A-GLANCE BAR ───────── */
+  .atglance{
+    background:var(--paper-2);
+    border-bottom:1px solid var(--rule);
+  }
+  .atglance-inner{
+    max-width:1440px;margin:0 auto;padding:22px 32px;
+    display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:0;
+    align-items:stretch;
+  }
+  .glance-lede{
+    padding-right:28px;border-right:1px solid var(--rule-2);
+  }
+  .glance-lede .lede-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .glance-lede .lede-value{font-family:'Source Serif 4',Georgia,serif;font-size:44px;font-weight:600;line-height:1;color:var(--ink);letter-spacing:-.01em}
+  .glance-lede .lede-sub{font-size:14px;color:var(--ink-2);margin-top:6px}
+
+  .stat{
+    padding:4px 24px;
+    border-right:1px solid var(--rule-2);
+    display:flex;flex-direction:column;justify-content:center;
+    cursor:pointer;transition:background .15s;
+    position:relative;
+  }
+  .stat:last-child{border-right:none}
+  .stat:hover{background:var(--paper)}
+  .stat.active{background:var(--paper)}
+  .stat.active::before{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:4px;
+  }
+  .stat.active.green::before{background:var(--st-green)}
+  .stat.active.yellow::before{background:var(--st-yellow)}
+  .stat.active.red::before{background:var(--st-red)}
+  .stat.active.gray::before{background:var(--st-gray)}
+
+  .stat-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .stat-chip{
+    width:14px;height:14px;border-radius:3px;flex-shrink:0;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);
+  }
+  .stat.green  .stat-chip{background:var(--st-green)}
+  .stat.yellow .stat-chip{background:var(--st-yellow)}
+  .stat.red    .stat-chip{background:var(--st-red)}
+  .stat.gray   .stat-chip{background:var(--st-gray)}
+  .stat-label{font-size:13px;font-weight:600;color:var(--ink-2);letter-spacing:.02em}
+  .stat-value{font-family:'Source Serif 4',Georgia,serif;font-size:36px;font-weight:600;line-height:1;color:var(--ink)}
+  .stat-sub{font-size:13px;color:var(--ink-3);margin-top:4px}
+
+  /* ───────── CONTROLS ───────── */
+  .controls{
+    max-width:1440px;margin:0 auto;padding:20px 32px 0;
+    display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;
+  }
+  .control{display:flex;flex-direction:column;gap:6px}
+  .control label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .control select,.control input{
+    background:var(--paper-2);border:1px solid var(--rule);color:var(--ink);
+    padding:10px 14px;border-radius:4px;font:inherit;font-size:15px;
+    min-width:220px;min-height:42px;
+  }
+  .control select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%2331404f' d='M6 8L0 0h12z'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+  .control select:focus,.control input:focus{outline:2px solid var(--nasa-blue);outline-offset:1px;border-color:var(--nasa-blue)}
+
+  .result-count{
+    margin-left:auto;font-size:14px;color:var(--ink-2);padding-bottom:10px;
+  }
+  .result-count strong{color:var(--ink);font-weight:600}
+
+  /* ───────── MAIN ───────── */
+  main{max-width:1440px;margin:0 auto;padding:24px 32px 64px}
+
+  .section-head{
+    display:flex;align-items:baseline;gap:16px;
+    margin:16px 0 16px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--ink);
+  }
+  .section-head h2{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;font-size:22px;letter-spacing:-.005em;color:var(--ink);
+  }
+  .section-head .section-note{font-size:14px;color:var(--ink-3)}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(420px,1fr));
+    gap:20px;
+  }
+
+  /* ───────── PROJECT CARD ───────── */
+  .card{
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    box-shadow:var(--shadow-card);
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    position:relative;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+  }
+  .card.green::before {background:var(--st-green)}
+  .card.yellow::before{background:var(--st-yellow)}
+  .card.red::before   {background:var(--st-red)}
+  .card.gray::before  {background:var(--st-gray)}
+
+  .card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(19,24,31,.09);border-color:#a99a78}
+  .card:focus-visible{outline:3px solid var(--nasa-blue);outline-offset:2px}
+
+  .card-thumb{
+    position:relative;height:180px;overflow:hidden;
+    background:linear-gradient(180deg,#0a1a33 0%, #061227 100%);
+    border-bottom:1px solid var(--rule-2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+  .card:hover .card-thumb img{transform:scale(1.03)}
+  .card-thumb.placeholder{background:
+    repeating-linear-gradient(135deg,#0a1a33 0 16px,#0c1f3d 16px 32px);
+    color:rgba(255,255,255,.7);
+    font-family:'Source Serif 4',Georgia,serif;font-size:36px;font-weight:700;letter-spacing:.02em;
+  }
+  .card-thumb.placeholder .ph-star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:.6}
+
+  .card-head{padding:20px 22px 14px 28px;border-bottom:1px solid var(--rule-2)}
+  .card-head .acronym{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-size:30px;font-weight:700;letter-spacing:-.01em;line-height:1.05;color:var(--ink);
+    text-transform:uppercase;
+  }
+  .card-head .title{
+    font-size:15px;color:var(--ink-2);margin-top:6px;line-height:1.4;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+  .card-body{padding:18px 22px 18px 28px;flex:1;display:flex;flex-direction:column;gap:16px}
+
+  .status-row{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .status-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px 6px 10px;
+    border-radius:3px;
+    font-size:13.5px;font-weight:600;letter-spacing:.01em;
+    border:1px solid transparent;
+  }
+  .status-pill .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .status-pill.green {background:var(--st-green-bg); color:var(--st-green); border-color:#b2d4a7}
+  .status-pill.green  .dot{background:var(--st-green)}
+  .status-pill.yellow{background:var(--st-yellow-bg);color:var(--st-yellow);border-color:#e1c983}
+  .status-pill.yellow .dot{background:var(--st-yellow)}
+  .status-pill.red   {background:var(--st-red-bg);   color:var(--st-red);   border-color:#e3a99f}
+  .status-pill.red    .dot{background:var(--st-red)}
+  .status-pill.gray  {background:var(--st-gray-bg);  color:var(--st-gray);  border-color:#c9c0ae}
+  .status-pill.gray   .dot{background:var(--st-gray)}
+
+  .variance{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;font-size:22px;line-height:1;letter-spacing:-.005em;
+  }
+  .variance.up  {color:var(--st-red)}
+  .variance.flat{color:var(--st-green)}
+  .variance small{display:block;font-family:'Source Sans 3',sans-serif;font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;text-align:right}
+
+  /* KPI row: baseline → current */
+  .kpi{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
+    padding:14px 16px;background:var(--paper);border:1px solid var(--rule-2);border-radius:4px;
+  }
+  .kpi .k-col{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .kpi .k-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .kpi .k-val{font-family:'Source Serif 4',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.005em}
+  .kpi .k-sub{font-size:12px;color:var(--ink-3)}
+  .kpi .arrow{color:var(--ink-3);font-size:18px;line-height:1}
+  .kpi.none{justify-content:center;grid-template-columns:1fr;text-align:center;font-size:14px;color:var(--ink-3);font-style:italic}
+
+  .meta{
+    display:grid;grid-template-columns:1fr 1fr;column-gap:20px;row-gap:10px;
+  }
+  .meta .m-row{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .meta .m-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .meta .m-val{font-size:14.5px;color:var(--ink);line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  .card-foot{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 22px 14px 28px;border-top:1px solid var(--rule-2);
+    background:var(--paper);
+  }
+  .ref{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--ink-3);letter-spacing:.02em}
+  .open{font-size:14px;font-weight:600;color:var(--nasa-blue);display:inline-flex;align-items:center;gap:6px}
+  .open::after{content:"→";transition:transform .15s}
+  .card:hover .open::after{transform:translateX(3px)}
+
+  .no-results{text-align:center;padding:60px 24px;color:var(--ink-2);background:var(--paper-2);border:1px dashed var(--rule);border-radius:6px}
+  .no-results h3{font-family:'Source Serif 4',Georgia,serif;font-size:22px;margin-bottom:6px;color:var(--ink)}
+
+  /* ───────── LIFECYCLE TIMELINE ───────── */
+  /* Phase colors mirror the GAO PDF ribbon:
+       gold = formulation, teal = implementation, navy = KDP-C transition */
+  :root{
+    --tl-gold:#c89015;
+    --tl-gold-bg:#f6e8c4;
+    --tl-teal:#2c8b8b;
+    --tl-teal-bg:#d4e9e9;
+  }
+  .tl{
+    list-style:none;padding:0;margin:0;
+    display:flex;align-items:stretch;gap:0;
+    overflow-x:auto;
+    padding:24px 0 14px;
+    position:relative;
+  }
+  .tl-item{
+    flex:1 1 0;min-width:130px;
+    position:relative;padding:0 14px;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  /* Connecting bar — color depends on phase */
+  .tl-item::before{
+    content:"";position:absolute;top:-2px;left:0;right:0;height:4px;background:var(--rule);
+  }
+  .tl-item:first-child::before{left:50%}
+  .tl-item:last-child::before{right:50%}
+  .tl-item.formulation::before  {background:var(--tl-gold)}
+  .tl-item.kdp::before          {background:linear-gradient(to right,var(--tl-gold) 50%,var(--tl-teal) 50%)}
+  .tl-item.implementation::before{background:var(--tl-teal)}
+  .tl-item.undated::before      {background:var(--rule-2)}
+  /* Dot on the bar */
+  .tl-dot{
+    position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    width:14px;height:14px;border-radius:50%;
+    background:var(--paper-2);
+    border:2px solid var(--rule);
+    box-shadow:0 0 0 4px var(--paper-2);
+    z-index:2;
+  }
+  .tl-item.formulation .tl-dot   {border-color:var(--tl-gold)}
+  .tl-item.implementation .tl-dot{border-color:var(--tl-teal)}
+  .tl-item.kdp .tl-dot           {background:var(--nasa-blue);border-color:var(--nasa-blue);width:16px;height:16px;top:-10px}
+  .tl-item.undated .tl-dot       {border-color:var(--ink-3);border-style:dashed}
+  .tl-date{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:11px;font-weight:500;letter-spacing:.02em;text-transform:uppercase;
+    color:var(--ink-2);
+  }
+  .tl-item.formulation .tl-date   {color:var(--tl-gold)}
+  .tl-item.implementation .tl-date{color:var(--tl-teal)}
+  .tl-item.kdp .tl-date           {color:var(--nasa-blue);font-weight:600}
+  .tl-item.undated .tl-date       {color:var(--ink-3)}
+  .tl-label{
+    font-size:13px;line-height:1.35;color:var(--ink);
+  }
+  .tl-item.kdp .tl-label{font-weight:600}
+  /* Phase legend */
+  .tl-legend{
+    display:flex;gap:18px;font-size:12px;color:var(--ink-3);margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .tl-legend .lg-key{display:inline-flex;align-items:center;gap:6px}
+  .tl-legend .lg-swatch{width:22px;height:4px;border-radius:2px}
+  .tl-legend .lg-swatch.formulation{background:var(--tl-gold)}
+  .tl-legend .lg-swatch.implementation{background:var(--tl-teal)}
+  .tl-legend .lg-swatch.kdp{background:var(--nasa-blue);border-radius:50%;width:10px;height:10px}
+
+  /* ───────── SCHEDULE SLIP PILL (#1) ───────── */
+  .slip-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600;
+    border:1px solid transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .slip-pill.green {background:var(--st-green-bg); color:var(--st-green); border-color:#b2d4a7}
+  .slip-pill.yellow{background:var(--st-yellow-bg);color:var(--st-yellow);border-color:#e1c983}
+  .slip-pill.red   {background:var(--st-red-bg);   color:var(--st-red);   border-color:#e3a99f}
+  .slip-pill.gray  {background:var(--st-gray-bg);  color:var(--st-gray);  border-color:#c9c0ae}
+  .slip-pill .slip-icon{font-size:11px;opacity:.7}
+
+  /* ───────── BULLET BAR (#2) ───────── */
+  .bullet-wrap{
+    background:var(--paper);
+    border:1px solid var(--rule-2);
+    border-radius:4px;
+    padding:18px 22px 14px;
+    margin-top:12px;
+  }
+  .bullet-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px;
+  }
+  .bullet-head .b-event{font-size:13px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+  .bullet-track{
+    position:relative;height:30px;margin:14px 0 6px;
+  }
+  .bullet-axis{
+    position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule);
+  }
+  .bullet-bar{
+    position:absolute;top:calc(50% - 4px);height:8px;border-radius:2px;
+  }
+  .bullet-bar.green {background:var(--st-green); opacity:.55}
+  .bullet-bar.yellow{background:var(--st-yellow);opacity:.7}
+  .bullet-bar.red   {background:var(--st-red);   opacity:.7}
+  .bullet-bar.gray  {background:var(--st-gray);  opacity:.55}
+  .bullet-tick{
+    position:absolute;top:50%;width:14px;height:14px;border-radius:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 0 3px var(--paper);
+  }
+  .bullet-tick.baseline{background:var(--paper-2);border:2px solid var(--ink)}
+  .bullet-tick.current.green {background:var(--st-green)}
+  .bullet-tick.current.yellow{background:var(--st-yellow)}
+  .bullet-tick.current.red   {background:var(--st-red)}
+  .bullet-tick.current.gray  {background:var(--st-gray)}
+  .bullet-label{
+    position:absolute;top:24px;font-size:12px;color:var(--ink-3);transform:translateX(-50%);
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .bullet-label strong{color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:14px;display:block;margin-top:2px;font-weight:600}
+  .bullet-legend{
+    display:flex;gap:18px;font-size:12px;color:var(--ink-3);margin-top:18px;
+  }
+  .bullet-legend .lg-key{display:inline-flex;align-items:center;gap:6px}
+  .bullet-legend .lg-dot{width:10px;height:10px;border-radius:50%}
+  .bullet-legend .lg-dot.baseline{background:var(--paper-2);border:2px solid var(--ink)}
+  .bullet-legend .lg-dot.current{background:var(--st-yellow)}
+
+  /* ───────── PORTFOLIO SECTION (collapsible swim-lane) ───────── */
+  .portfolio{
+    max-width:1440px;margin:24px auto 0;padding:0 32px;
+  }
+  .panel{
+    background:var(--paper-2);border:1px solid var(--rule);border-radius:6px;
+    padding:0;
+  }
+  details.panel > summary{
+    list-style:none;cursor:pointer;
+    padding:18px 22px;
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    user-select:none;
+  }
+  details.panel > summary::-webkit-details-marker{display:none}
+  details.panel > summary:hover{background:var(--paper)}
+  details.panel[open] > summary{border-bottom:1px solid var(--rule-2)}
+  .panel-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px;
+  }
+  .panel-head h3, summary.panel-head h3{
+    font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:18px;color:var(--ink);
+    display:inline;
+  }
+  .panel-head .panel-sub{
+    font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;
+    margin-left:14px;
+  }
+  .panel-toggle{
+    color:var(--ink-3);font-size:14px;transition:transform .15s;
+  }
+  details.panel[open] .panel-toggle{transform:rotate(180deg)}
+  /* Inner swim content gets its own padding now that the panel itself has none. */
+  details.panel > #swimAxis,
+  details.panel > #swimBody{padding-left:22px;padding-right:22px}
+  details.panel > #swimAxis{padding-top:14px}
+  details.panel > #swimBody{padding-bottom:22px}
+
+  /* Swim-lane (#4) */
+  .swim{
+    display:grid;grid-template-columns:170px 1fr 70px;
+    column-gap:14px;row-gap:6px;
+    align-items:center;
+  }
+  .swim-axis{
+    position:relative;height:22px;border-bottom:1px solid var(--rule-2);
+    margin-bottom:4px;
+  }
+  .swim-year{
+    position:absolute;top:2px;font-size:11px;color:var(--ink-3);transform:translateX(-50%);
+    font-variant-numeric:tabular-nums;
+  }
+  .swim-year::after{
+    content:"";position:absolute;left:50%;top:14px;width:1px;height:8px;background:var(--rule-2);
+  }
+  .swim-name{
+    font-size:13px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .swim-track{
+    position:relative;height:14px;
+    background:linear-gradient(to right, transparent, transparent) center/100% 1px no-repeat;
+    border-bottom:1px dashed var(--rule-2);
+  }
+  .swim-track::before{
+    content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule-2);
+  }
+  .swim-bar{
+    position:absolute;top:calc(50% - 2px);height:4px;border-radius:2px;
+  }
+  .swim-bar.green {background:var(--st-green); opacity:.55}
+  .swim-bar.yellow{background:var(--st-yellow);opacity:.7}
+  .swim-bar.red   {background:var(--st-red);   opacity:.7}
+  .swim-bar.gray  {background:var(--st-gray);  opacity:.55}
+  .swim-dot{
+    position:absolute;top:50%;width:9px;height:9px;border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+  .swim-dot.baseline{background:var(--paper-2);border:1.5px solid var(--ink)}
+  .swim-dot.current.green {background:var(--st-green)}
+  .swim-dot.current.yellow{background:var(--st-yellow)}
+  .swim-dot.current.red   {background:var(--st-red)}
+  .swim-dot.current.gray  {background:var(--st-gray)}
+  .swim-slip{
+    font-size:12px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-3);
+  }
+  .swim-slip.green {color:var(--st-green)}
+  .swim-slip.yellow{color:var(--st-yellow)}
+  .swim-slip.red   {color:var(--st-red)}
+
+  /* Card delta block (cost & schedule variance, paired) */
+  .deltas{
+    display:flex;gap:18px;align-items:flex-end;justify-content:flex-end;
+  }
+  .delta{
+    display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0;
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;font-size:22px;line-height:1;letter-spacing:-.005em;
+    color:var(--ink-3);
+    font-variant-numeric:tabular-nums;
+  }
+  .delta.green {color:var(--st-green)}
+  .delta.yellow{color:var(--st-yellow)}
+  .delta.red   {color:var(--st-red)}
+  .delta small{
+    display:block;font-family:'Source Sans 3',sans-serif;font-weight:500;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;
+  }
+
+  footer.site{
+    max-width:1440px;margin:40px auto 0;padding:24px 32px;
+    border-top:1px solid var(--rule);
+    font-size:13px;color:var(--ink-3);
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+
+  /* ───────── MODAL ───────── */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(19,24,31,.45);backdrop-filter:blur(2px);
+    z-index:1000;overflow-y:auto;padding:32px 20px;
+  }
+  .modal-overlay.active{display:flex;justify-content:center;align-items:flex-start}
+  .modal{
+    background:var(--paper-2);border-radius:6px;max-width:1080px;width:100%;
+    box-shadow:var(--shadow-pop);overflow:hidden;
+    margin:20px auto 60px;
+  }
+  .modal-head{
+    padding:26px 36px 24px;
+    background:var(--paper-2);
+    border-bottom:1px solid var(--rule);
+    position:relative;
+    display:flex;gap:24px;align-items:flex-start;
+  }
+  .modal-head .accent{
+    position:absolute;left:0;top:0;bottom:0;width:6px;
+  }
+  .modal-head.green .accent {background:var(--st-green)}
+  .modal-head.yellow .accent{background:var(--st-yellow)}
+  .modal-head.red .accent   {background:var(--st-red)}
+  .modal-head.gray .accent  {background:var(--st-gray)}
+  .modal-head .title-wrap{flex:1;min-width:0}
+  .modal-head .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .modal-head h2{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;font-size:34px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);
+    text-transform:uppercase;
+  }
+  .modal-head .sub{font-size:15px;color:var(--ink-2);margin-top:8px;line-height:1.4}
+  .modal-head .status-pill{flex-shrink:0;margin-top:4px}
+  .modal-close{
+    position:absolute;top:18px;right:18px;
+    width:40px;height:40px;border-radius:4px;
+    background:transparent;border:1px solid var(--rule);color:var(--ink-2);
+    font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  }
+  .modal-close:hover{background:var(--paper);color:var(--ink)}
+
+  .modal-body{padding:28px 36px 36px}
+
+  .mod-section{margin-bottom:36px}
+  .mod-section:last-child{margin-bottom:0}
+  .mod-section h3{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-size:20px;font-weight:600;color:var(--ink);
+    padding-bottom:8px;margin-bottom:18px;
+    border-bottom:2px solid var(--ink);
+  }
+
+  .summary-body{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-size:17px;line-height:1.65;color:var(--ink);
+  }
+  .summary-body p{margin:0}
+  .summary-body p + p{margin-top:14px}
+
+  .info-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:0;
+    border-top:1px solid var(--rule-2);
+    border-left:1px solid var(--rule-2);
+  }
+  .info-item{
+    padding:14px 18px;
+    border-right:1px solid var(--rule-2);
+    border-bottom:1px solid var(--rule-2);
+    background:var(--paper-2);
+  }
+  .info-item .lbl{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+  .info-item .val{font-size:15px;color:var(--ink);line-height:1.35}
+
+  .cs-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cs-card{
+    padding:18px 20px;border-radius:4px;
+    background:var(--paper);border:1px solid var(--rule-2);
+  }
+  .cs-card h4{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+  .cs-card p{font-size:16px;color:var(--ink);line-height:1.45}
+  .cs-card.empty p{color:var(--ink-3);font-style:italic}
+
+  .cost-chart-wrap{
+    background:var(--paper);border:1px solid var(--rule-2);border-radius:4px;padding:20px 24px;
+  }
+  .cost-chart-wrap canvas{max-height:260px}
+  .no-cost-data{padding:20px;background:var(--paper);border:1px dashed var(--rule);border-radius:4px;text-align:center;color:var(--ink-3);font-style:italic}
+
+  .risks{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .risks li{
+    padding:14px 16px 14px 18px;
+    background:var(--paper);border:1px solid var(--rule-2);border-left:4px solid var(--ink-3);
+    border-radius:3px;
+    font-size:15.5px;line-height:1.5;color:var(--ink);
+  }
+  .risks li.technical{border-left-color:var(--nasa-blue)}
+  .risks li.schedule {border-left-color:var(--st-yellow)}
+  .risks li.cost     {border-left-color:var(--st-red)}
+  .risks li .rtag{
+    display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:2px 7px;border-radius:2px;margin-right:8px;vertical-align:2px;
+    background:var(--ink);color:#fff;
+  }
+  .risks li.technical .rtag{background:var(--nasa-blue)}
+  .risks li.schedule  .rtag{background:var(--st-yellow);color:#fff}
+  .risks li.cost      .rtag{background:var(--st-red)}
+  .risks li .rtitle{font-weight:600;color:var(--ink)}
+
+  /* Modal tabs + report viewer */
+  .mod-tabs{
+    display:flex;gap:0;border-bottom:1px solid var(--rule);
+    margin:-8px -36px 24px;padding:0 36px;
+  }
+  .mod-tab{
+    background:transparent;border:0;padding:14px 20px;cursor:pointer;
+    font:inherit;font-size:15px;font-weight:600;color:var(--ink-3);
+    border-bottom:3px solid transparent;margin-bottom:-1px;
+  }
+  .mod-tab:hover{color:var(--ink)}
+  .mod-tab.active{color:var(--nasa-blue);border-bottom-color:var(--nasa-blue)}
+  .tab-badge{
+    display:inline-block;margin-left:8px;padding:2px 7px;border-radius:999px;
+    background:var(--paper);border:1px solid var(--rule-2);
+    font-size:11px;font-weight:600;color:var(--ink-3);letter-spacing:.02em;
+    vertical-align:1px;
+  }
+  .mod-tab.active .tab-badge{background:#e7eef9;border-color:#c8d6eb;color:var(--nasa-blue)}
+  .tab-panel{display:none}
+  .tab-panel.active{display:block}
+
+  .report-viewer{display:flex;flex-direction:column;gap:20px;align-items:center}
+  .report-page{
+    width:100%;max-width:880px;background:#fff;border:1px solid var(--rule);
+    box-shadow:0 2px 8px rgba(19,24,31,.08);border-radius:4px;overflow:hidden;
+  }
+  .report-page img{display:block;width:100%;height:auto}
+  .report-page-label{
+    background:var(--paper);padding:10px 16px;font-size:13px;color:var(--ink-2);
+    border-top:1px solid var(--rule-2);font-weight:600;letter-spacing:.02em;
+  }
+  .report-missing{
+    padding:40px 24px;background:var(--paper);border:1px dashed var(--rule);border-radius:4px;
+    text-align:center;color:var(--ink-2);
+  }
+  .report-missing strong{display:block;font-family:'Source Serif 4',Georgia,serif;font-size:20px;color:var(--ink);margin-bottom:6px}
+
+  @media (max-width:1100px){
+    .atglance-inner{grid-template-columns:1fr 1fr 1fr;}
+    .glance-lede{grid-column:1/-1;border-right:none;border-bottom:1px solid var(--rule-2);padding:0 0 16px;margin-bottom:10px}
+    .stat{border-right:1px solid var(--rule-2)}
+  }
+  @media (max-width:720px){
+    .masthead{padding:16px 18px}
+    .atglance-inner{grid-template-columns:1fr 1fr;padding:16px 18px}
+    .stat{padding:12px 14px;border-bottom:1px solid var(--rule-2)}
+    .controls{padding:14px 18px 0}
+    main{padding:16px 18px 40px}
+    .grid{grid-template-columns:1fr}
+    .cs-cards{grid-template-columns:1fr}
+    .modal-head{padding:20px 22px;flex-direction:column}
+    .modal-body{padding:20px 22px}
+    .modal-head h2{font-size:26px}
+    .brand h1{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="masthead">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">NASA</div>
+      <div>
+        <div class="eyebrow">U.S. Government Accountability Office</div>
+        <h1>NASA Major Projects — Quick Look</h1>
+        <div class="report-id"><strong>GAO-25-107591</strong> · Individual project summaries · 18 projects tracked</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="dateline">Prepared for Congressional Staff</div>
+      <div>Source: GAO Assessments of Major NASA Projects</div>
+    </div>
+  </div>
+</header>
+
+<!-- AT-A-GLANCE -->
+<section class="atglance" aria-label="At a glance">
+  <div class="atglance-inner" id="atGlance"></div>
+</section>
+
+<!-- PORTFOLIO (swim-lane, collapsed by default) -->
+<section class="portfolio" aria-label="Schedule slip">
+  <details class="panel" id="swimPanel">
+    <summary class="panel-head">
+      <span><h3>Schedule slip across the portfolio</h3>
+      <span class="panel-sub">baseline → current launch readiness</span></span>
+      <span class="panel-toggle" aria-hidden="true">▾</span>
+    </summary>
+    <div id="swimAxis" class="swim-axis"></div>
+    <div id="swimBody" class="swim"></div>
+  </details>
+</section>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="control">
+    <label for="directorateFilter">Directorate</label>
+    <select id="directorateFilter">
+      <option value="all">All directorates</option>
+    </select>
+  </div>
+  <div class="control">
+    <label for="sortBy">Sort by</label>
+    <select id="sortBy">
+      <option value="status">Status (highest concern first)</option>
+      <option value="variance-desc">Cost variance (largest over first)</option>
+      <option value="cost-desc">Life-cycle cost (largest first)</option>
+      <option value="name">Project name (A–Z)</option>
+      <option value="directorate">Directorate</option>
+    </select>
+  </div>
+  <div class="control">
+    <label for="searchInput">Search</label>
+    <input type="text" id="searchInput" placeholder="Project, center, or keyword…">
+  </div>
+  <div class="result-count" id="resultCount"></div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="section-head">
+    <h2 id="sectionTitle">All projects</h2>
+    <span class="section-note" id="sectionNote">Click any project for full summary, timeline, cost chart, and key risks.</span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="no-results" id="noResults" style="display:none">
+    <h3>No projects match your filters</h3>
+    <p>Try clearing the search or switching directorate.</p>
+  </div>
+</main>
+
+<footer class="site">
+  <div>Data source: <a href="https://www.gao.gov" target="_blank" rel="noopener">U.S. Government Accountability Office</a> · GAO-25-107591</div>
+  <div>Demonstration dashboard for visualization purposes.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modal">
+    <div class="modal-head" id="modalHead">
+      <div class="accent"></div>
+      <div class="title-wrap">
+        <div class="eyebrow" id="modalEyebrow"></div>
+        <h2 id="modalTitle"></h2>
+        <div class="sub" id="modalSubtitle"></div>
+      </div>
+      <span class="status-pill" id="modalStatusPill"><span class="dot"></span><span id="modalStatusText"></span></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// Project data extracted from GAO-25-107591.
+// Names normalized (CCP, IMAP, LBFD) and the "fullName" sentence-fragment tidied into
+// a proper project title where possible.
+window.PROJECTS = [
+  {
+    "id": "eva-development",
+    "name": "EVA Development",
+    "title": "Extravehicular Activity and Human Surface Mobility Program (EHP) – Extravehicular Activity (EVA) Development Project",
+    "pages": [
+      43,
+      44
+    ],
+    "leadCenter": "Johnson Space Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "N/A",
+    "launchVehicle": "HLS and Commercial Resupply Services",
+    "missionDuration": "10 years",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "In June 2024, NASA reported that NASA and Collins mutually agreed to end Collins’s development efforts on the ISS space suit. NASA authorized Axiom to continue work on the ISS space suit development through the critical design review, and modified Axiom’s Artemis EVA demonstration task order to include an improved telecommunications demonstration during the Artemis III mission. Axiom successfully completed the Artemis and ISS preliminary design reviews in March 2024 and December 2024, respectively.\n\nProject officials stated that NASA and Axiom will complete a joint lunar and ISS space suit critical design review in early 2026. Further, these project officials said that NASA and Axiom will conduct a vacuum chamber test of the lunar space suits in early 2026 as part of the critical design review milestone. Axiom will mature several critical technologies after successful completion of the vacuum chamber test, including the portable life-support system backplate.",
+    "risks": [
+      "[Technical] Axiom's space suit design not meeting NASA requirements: Axiom's space suit design exceeds the allowable mass and requires more resources, potentially causing schedule delays for final delivery.",
+      "[Schedule] Relying on a single space suit provider: This could lead to delays in critical milestones and increased costs, jeopardizing overall mission success.",
+      "[Technical] Performance issues with Collins's ISS space suit: Collins delayed completing its preliminary design review due to a notable amount of incomplete work, potentially affecting the ISS space suit demonstration.",
+      "[Schedule] Schedule delays due to production activities: Production activities for the qualification suit, particularly the assembly of the backplate for the portable life-support system, are driving the schedule."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "According to NASA officials, Collins delayed completing its preliminary design review from June 2023 to April 2024 due to a notable amount of incomplete work. In May 2024, NASA modified Axiom’s Artemis EVA demonstration task order to include the Artemis Communications Demonstration during the Artemis III mission.",
+    "costData": null,
+    "keyMilestones": [
+      {
+        "date": "Dec 2026",
+        "event": "Preliminary delivery date"
+      }
+    ],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Jul 2019",
+        "label": "start under Gateway program",
+        "phase": "formulation"
+      },
+      {
+        "date": "Sep 2021",
+        "label": "System requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2021",
+        "label": "start under EHP program",
+        "phase": "formulation"
+      },
+      {
+        "date": "May 2022",
+        "label": "Contract awards",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jun 2024",
+        "label": "Collins descopes task order for ISS suits",
+        "phase": "formulation"
+      },
+      {
+        "date": "Aug 2024",
+        "label": "PDR- informed sync review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Aug 2025",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "May 2026",
+        "label": "CDR- informed sync review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Dec 2026",
+        "label": "Preliminary ISS and lunar surface space suit delivery date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "ltv",
+    "name": "LTV",
+    "title": "Extravehicular Activity and Human Surface Mobility Program (EHP) – Lunar Terrain Vehicle (LTV)",
+    "pages": [
+      45,
+      46
+    ],
+    "leadCenter": "Johnson Space Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "To be determined by LTV contractor(s)",
+    "launchVehicle": "To be determined by LTV contractor(s)",
+    "missionDuration": "10 years",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "In March 2024, NASA awarded indefinite delivery/indefinite quantity contracts to three contractors—Intuitive Machines, Lunar Outpost, and Venturi Astrolab—and issued initial firm-fixed price task orders for the LTV feasibility assessment phase. The project expects this initial phase to last approximately 12 months, through preliminary design review. After this phase, the program plans to issue a task order to one contractor that would culminate in an uncrewed lunar surface demonstration. Each contractor completed its system requirements review by November 2024 and is working toward its individual preliminary design review in 2025.\n\nThe project performed fit checks with Axiom’s space suit in the project’s Ground Test Unit, and with the contractors’ LTV mockups. Using a system that simulates lunar gravity, the program completed joint testing with the space suits and the contractors’ mockups.\n\nAccording to the project, there are risks related to LTV’s launch vehicle and lander technology maturity. To mitigate both risks, the project plans to participate in the oversight of the contractors’ LTV designs and approaches for system that will deliver it to the lunar surface. The project also expects to conduct contractor delivery system concept reviews at the end of the feasibility phase, in the second quarter of fiscal year 2025.",
+    "risks": [
+      "[Technical] LTV Launch Vehicle Maturity Risk: Risk that the maturity of LTV's launch vehicle technology might not be sufficient, potentially causing delays or failures in the lunar surface demonstration.",
+      "[Technical] Lander Technology Maturity Risk: Risk that the maturity of LTV's lander technology might not be sufficient, potentially causing delays or failures in the lunar surface demonstration.",
+      "[Schedule] Contractor Delivery System Concept Review Delay Risk: Risk that the contractor delivery system concept reviews might not be completed by the planned date in the second quarter of fiscal year 2025, potentially causing delays in the project timeline."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "The project expects this initial phase to last approximately 12 months, through preliminary design review.",
+    "costData": null,
+    "keyMilestones": [],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "sld",
+    "name": "HLS – SLD",
+    "title": "Human Landing System (HLS) – Sustaining Lunar Development (SLD)",
+    "pages": [
+      47,
+      48
+    ],
+    "leadCenter": "Marshall Space Flight Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "Blue Origin–Cape Canaveral, FL; and SpaceX–multiple launch locations",
+    "launchVehicle": "Blue Origin–New Glenn; and SpaceX–Super Heavy Booster",
+    "missionDuration": "6–33 days",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "SpaceX and Blue Origin are working toward their next design reviews. SpaceX held an SLD certification baseline review in May 2023 and is working toward its preliminary design review in August 2025. SpaceX and NASA also plan to hold the HLS Initial Capability critical design review in 2025. Blue Origin held a preliminary design review in February 2024 and plans to complete its critical design review in August 2025.\n\nHLS officials said Blue Origin had to conduct additional work after its preliminary design review because its lunar lander design did not meet NASA’s propellant and mass requirements. These officials said that Blue Origin completed additional design analysis and showed progress in meeting the mass requirement. Blue Origin conducted New Glenn’s first flight—reaching its intended orbit and deploying its payload—in January 2025. It plans to conduct additional test flights to achieve NASA’s Launch Services Program certification, among other things. Blue Origin plans to conduct New Glenn’s second flight in spring 2025.\n\nNASA is tracking a risk for each provider related to inadequate controls for flammable materials. The amount of oxygen and cabin pressure in the SLD lander atmosphere could create conditions for fire propagation, potentially resulting in loss of mission or crew. The project is conducting tests to better understand material flammability in the lander and techniques to prevent fires from starting and spreading.",
+    "risks": [
+      "[Technical] Inadequate controls for flammable materials: Risk of fire propagation due to oxygen and cabin pressure in SLD lander atmosphere, potentially leading to mission or crew loss.",
+      "[Schedule] Blue Origin's lunar lander design not meeting NASA's propellant and mass requirements: Potential delay in meeting design requirements for Blue Origin's lunar lander, which could impact the project schedule.",
+      "[Schedule] Blue Origin's New Glenn certification: Risk of delays in achieving NASA's Launch Services Program certification for Blue Origin's New Glenn, which could impact the project schedule."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "",
+    "costData": null,
+    "keyMilestones": [
+      {
+        "date": "Jul 2028",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Oct 2029",
+        "event": "Schedule milestone"
+      }
+    ],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "sls-block-2",
+    "name": "SLS Block 2",
+    "title": "Space Launch System (SLS) Block 2",
+    "pages": [
+      49,
+      50
+    ],
+    "leadCenter": "Marshall Space Flight Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "Kennedy Space Center, FL",
+    "launchVehicle": "N/A",
+    "missionDuration": "Varied based on destination",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "NASA has not yet established formal cost baselines or preliminary cost estimates for SLS Block 2. It did, however, establish some preliminary schedules. NASA is planning to establish formal cost and schedule baselines for SLS Block 2 no earlier than mid-2027. It plans to fly the SLS Block 2 for the first time on Artemis IX, no earlier than March 2034.\n\nIn 2020, NASA awarded a contract for Booster Obsolescence and Life Extension (BOLE) development to support Artemis IX. The BOLE effort represents the most significant design change on the SLS Block 2 vehicle. Officials stated that the BOLE effort includes developing a new, more powerful booster with new carbon fiber composite casings and addressing electronic parts obsolescence issues.\n\nNASA completed the BOLE preliminary design review in January 2025, and the contractor has cast the five motor segments necessary for conducting full-scale hot fire booster ground testing scheduled for June 2025. The program expects to use the results of these activities to inform schedules for the SLS Block 2 program level preliminary design and critical design reviews, as well as integrated mission planning.\n\nOne of NASA’s top risks for SLS Block 2 is that loads analysis—which evaluates the structural integrity of a rocket during launch—may reveal the need for additional analysis, testing, or costly redesigns later in development.",
+    "risks": [
+      "[Technical] Potential for additional analysis, testing, or redesigns: Risk that loads analysis may reveal the need for additional analysis, testing, or costly redesigns later in development, potentially delaying the SLS Block 2 program and increasing costs.",
+      "[Cost] Lack of formal cost baselines: Risk that lack of formal cost baselines for SLS Block 2 could lead to budget overruns and financial instability.",
+      "[Schedule] Delay in establishing cost and schedule baselines: Risk that delay in establishing formal cost and schedule baselines for SLS Block 2 could impact the overall project timeline and budget.",
+      "[Technical] Success of BOLE development: Risk that the BOLE development might not be successful, which could delay the SLS Block 2 program.",
+      "[Technical] Obsolescence of electronic parts: Risk that addressing electronic parts obsolescence issues could pose challenges and potentially increase costs."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "",
+    "costData": null,
+    "keyMilestones": [],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "halo",
+    "name": "HALO",
+    "title": "Gateway – Habitation and Logistics Outpost (HALO)",
+    "pages": [
+      53,
+      54
+    ],
+    "leadCenter": "Johnson Space Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "European Space Agency, Japan Aerospace Exploration Agency, Canadian Space Agency",
+    "launchLocation": "Kennedy Space Center, FL",
+    "launchVehicle": "Falcon Heavy",
+    "missionDuration": "15 years",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "The HALO project is operating within the cost and schedule baselines established for the Gateway Initial Capability—comprised of the PPE and the HALO—in December 2023.\n\nThe HALO project is experiencing delays to its internal testing and review schedule. The project delayed its system integration review by 13 months due to delays in primary structure testing and module delivery.\n\nThe HALO project faces several challenges as it advances to its system integration review in December 2025. First, the HALO project continues to experience challenges related to the comanifested vehicle exceeding its mass allocation. The HALO’s mass is the primary driver of the overage. The HALO project is working to identify additional opportunities for mass reduction and is assessing how the mass reduction opportunities will impact the project’s overall schedule. Additionally, the project is tracking a risk that the communication network that links the integrated Gateway vehicle, might not work as planned.",
+    "risks": [
+      "[Technical] HALO mass exceeding allocation: The HALO project is facing a risk that the mass of the comanifested vehicle exceeds its allocation, with the HALO's mass being the primary driver of the overage.",
+      "[Technical] Communication network malfunction: There is a risk that the communication network linking the integrated Gateway vehicle might not function as planned, potentially leading to loss of control of the Gateway.",
+      "[Schedule] Schedule delay due to internal testing and review delays: Delays in internal testing and review schedule, and the subsequent delay and splitting of the system integration review, could potentially delay the project's delivery date.",
+      "[Cost] Potential cost increase due to mass reduction: After implementing mass reduction opportunities, the project may face an increased cost due to potential schedule delays and changes in the project's scope."
+    ],
+    "costStatus": "The cost baseline of $5.3 billion includes the costs for the initial capability, the launch vehicle, and program support for integration and launch.",
+    "scheduleStatus": "The HALO project is operating within the cost and schedule baselines established in December 2023 for the Gateway Initial Capability, which is both the HALO and the PPE together as a comanifested vehicle. The schedule baseline is the comanifested vehicle launch readiness date of December 2027.",
+    "costData": {
+      "baseline": 5.2809,
+      "current": 5.2809,
+      "baselineDate": "Dec. 2023",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Dec 2023",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Dec 2027",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Apr 2019",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Feb 2020",
+        "label": "System definition review",
+        "phase": "formulation"
+      },
+      {
+        "date": "May 2021",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jun 2023",
+        "label": "Critical design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2023",
+        "label": "Key decision Point 1",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Dec 2025",
+        "label": "System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Dec 2027",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "ppe",
+    "name": "PPE",
+    "title": "Gateway – Power and Propulsion Element (PPE)",
+    "pages": [
+      55,
+      56
+    ],
+    "leadCenter": "Glenn Research Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "Canadian Space Agency, European Space Agency",
+    "launchLocation": "Kennedy Space Center, FL",
+    "launchVehicle": "Falcon Heavy",
+    "missionDuration": "15 years",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "The PPE project continues to operate within cost and schedule baselines established for the Gateway Initial Capability—comprised of the PPE and the HALO—in December 2023. The total contract value is now over $1 billion due to requirements changes. Project officials said future contract modifications are expected to have minor effects on project cost and schedule relative to prior modifications.\n\nThe PPE project has made progress on integrating the spacecraft and on maturing its technologies and design, with plans to deliver the PPE for integration with the HALO in November 2026. In conjunction with the Gateway program, the project continues its efforts to reduce its mass to meet mass limits on the comanifested vehicle. The project is tracking risks related to the failure of critical hardware and testing procedures on the solar array, among others. It is also addressing a risk involving the PPE’s ability to sufficiently control the Gateway’s positioning on-orbit when larger and heavier visiting vehicles are docked with it.",
+    "risks": [
+      "[Cost] Cost growth due to requirements changes: Increase in contract value by 172% due to changes in PPE's capabilities to align with Gateway needs.",
+      "[Schedule] Schedule delay due to technology maturity: Two critical technologies remain below TRL 6 after critical design review, increasing risks for further product development.",
+      "[Technical] Solar array modeling inadequacy: Risk that the solar array model used for testing may not fully capture on-orbit behavior, potentially causing structural failure or insufficient power.",
+      "[Technical] Hardware failure during launch or wear out: Risk of critical hardware failure during launch or wear out over the life of the PPE.",
+      "[Technical] Mass exceeds allocation: PPE's mass exceeds comanifested vehicle allocation by 170 kilograms (wet mass), potentially causing longer transit time and increased radiation exposure."
+    ],
+    "costStatus": "The cost baseline of $5.3 billion includes the initial capability, the launch vehicle, and program support for integration and launch. The total contract value is now over $1 billion.",
+    "scheduleStatus": "The PPE project continues to operate within cost and schedule baselines established for the Gateway Initial Capability—which is comprised of the PPE and the HALO—in December 2023. The schedule baseline is for the comanifested vehicle launch readiness date of December 2027.",
+    "costData": {
+      "baseline": 5.2809,
+      "current": 5.2809,
+      "baselineDate": "Dec. 2023",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Dec 2023",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Dec 2027",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Sep 2017",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Sep 2019",
+        "label": "System requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Nov 2021",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2023",
+        "label": "Key decision Point 1",
+        "phase": "kdp"
+      },
+      {
+        "date": "Mar 2024",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Nov 2026",
+        "label": "PPE delivery for integration with the HALO",
+        "phase": "implementation"
+      },
+      {
+        "date": "Dec 2027",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "hls-initial-capability",
+    "name": "HLS – Initial Capability",
+    "title": "Human Landing System (HLS) - Initial Capability",
+    "pages": [
+      57,
+      58
+    ],
+    "leadCenter": "Marshall Space Flight Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "Multiple launch locations including Kennedy Space Center, FL and Boca Chica, TX",
+    "launchVehicle": "SpaceX Super Heavy Booster",
+    "missionDuration": "6.5 days",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "The HLS Initial Capability project is operating within the cost and schedule baselines NASA established for the project in December 2023. NASA tied the HLS initial capability schedule baseline to a lunar orbit checkout review in February 2028. The lunar orbit checkout review will examine the readiness of the HLS Starship to perform the Artemis III mission and receive crew from the Orion spacecraft.\n\nSpaceX conducted three successful flights of the Starship between June 2024 and November 2024. Two separate flights in January and March 2025 were not successful. It also has plans for flights demonstrating ship-to-ship cryogenic propellant transfer and an uncrewed lunar landing, both later in 2025.\n\nOne of the top risks facing the program is maturing propellant management technologies to support on-orbit storage and transfer of propellant. SpaceX plans to demonstrate the required systems during ongoing flight tests.",
+    "risks": [
+      "[Schedule] Artemis III Mission Delay: Delay in Artemis III mission due to technical challenges with Orion capsule heatshield and batteries, potentially impacting HLS Initial Capability schedule",
+      "[Technical] Starship Vehicle Reliability: Starship vehicle reliability concerns due to multiple failures during test flights, potentially impacting HLS Initial Capability schedule",
+      "[Technical] Propellant Management Technology Maturity: Risk that propellant management technologies may not be adequately matured, potentially impacting the ability to verify and validate SpaceX lunar mission architecture",
+      "[Technical] Astronaut Training Facilities: Concerns about the adequacy of facilities for training astronauts for manual control of HLS and flight-like conditions, potentially increasing the probability of loss during landing phase"
+    ],
+    "costStatus": "NASA set the HLS Initial Capability baseline life-cycle cost at about $4.9 billion.",
+    "scheduleStatus": "The HLS Initial Capability project is operating within the cost and schedule baselines that NASA established for the project in December 2023. NASA tied the HLS Initial Capability schedule baseline to a lunar orbit checkout review in February 2028.",
+    "costData": {
+      "baseline": 4.878,
+      "current": 4.878,
+      "baselineDate": "Dec. 2023",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Dec 2023",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Feb 2028",
+        "event": "Lunar orbit checkout review date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "May 2020",
+        "label": "Base period contractor selections",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2020",
+        "label": "Continuation review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jul 2021",
+        "label": "Exercise of A Option",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2023",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "2025",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "2025",
+        "label": "Uncrewed lunar landing flight test",
+        "phase": "implementation"
+      },
+      {
+        "date": "2026",
+        "label": "Design certification review",
+        "phase": "implementation"
+      },
+      {
+        "date": "2026",
+        "label": "Planned launch of HLS lander Starship",
+        "phase": "implementation"
+      },
+      {
+        "date": "Feb 2028",
+        "label": "Lunar orbit checkout review",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "ml2",
+    "name": "ML2",
+    "title": "Mobile Launcher 2 (ML2)",
+    "pages": [
+      59,
+      60
+    ],
+    "leadCenter": "Kennedy Space Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "",
+    "launchVehicle": "",
+    "missionDuration": "",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "The National Aeronautics and Space Administration (NASA) established cost and schedule baselines for the ML2 project in June 2024. The cost baseline is about $1.9 billion, and the schedule baseline is September 2027 for the delivery of ML2 from Bechtel, the prime contractor, to NASA. Bechtel is working to a delivery date of November 2026, and its contract was modified in March 2024 to incentivize an earlier delivery. The schedule baseline does not include ML2 verification and validation activities planned for after the delivery and prior to Artemis IV, which NASA is tracking as the project’s top risk. To mitigate this risk, the project plans to concurrently test the ML2 at the launch pad while Artemis III hardware is processed in the Vehicle Assembly Building.\n\nThe project completed its critical design review. NASA and Bechtel continue to assess the design implications of higher-than-anticipated Artemis I launch-induced loads. The analysis is ongoing, so they have not yet determined the full cost implications.",
+    "risks": [
+      "[Schedule] Insufficient schedule margin for ML2 verification and validation testing: Testing could exceed the time allocated by 8 months, which could delay the Artemis IV mission",
+      "[Cost] Ongoing loads analysis driving cost and schedule growth: Challenge with the loads analysis has been keeping the construction work going since the same employees are needed to support both efforts",
+      "[Schedule] Electrical equipment deliveries behind schedule: Could affect plans for installing future tower modules"
+    ],
+    "costStatus": "In June 2024, NASA established cost and schedule baselines for the ML2 project based on a 70 percent joint cost and schedule confidence level, as required by NASA policy. The cost baseline of approximately $1.9 billion includes all prime contractor efforts through delivery, as well as government furnished equipment and government provided project management and design support.",
+    "scheduleStatus": "In June 2024, NASA established cost and schedule baselines for the ML2 project based on a 70 percent joint cost and schedule confidence level, as required by NASA policy. The schedule baseline is September 2027 for Bechtel’s delivery of ML2 to NASA.",
+    "costData": {
+      "baseline": 1.8731,
+      "current": 1.8731,
+      "baselineDate": "June. 2024",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Jun 2024",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Sep 2027",
+        "event": "Delivery date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": null,
+        "label": "Continued from EGS — program start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jun 2019",
+        "label": "Contract signed",
+        "phase": "formulation"
+      },
+      {
+        "date": "Mar 2020",
+        "label": "System requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Mar 2021",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jan 2024",
+        "label": "Critical design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jun 2024",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "May–Nov 2026",
+        "label": "Bechtel delivery date for range hardware ML2 build",
+        "dateRangeStart": "May 2026",
+        "dateRangeEnd": "Nov 2026",
+        "phase": "implementation"
+      },
+      {
+        "date": "Sep 2027",
+        "label": "Latest date NASA accepts",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "orion",
+    "name": "Orion",
+    "title": "Orion Multi-Purpose Crew Vehicle (Orion)",
+    "pages": [
+      61,
+      62
+    ],
+    "leadCenter": "Johnson Space Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "European Space Agency (ESA)",
+    "launchLocation": "Kennedy Space Center, FL",
+    "launchVehicle": "Space Launch System",
+    "missionDuration": "Up to 21 days active mission duration capability with four crew",
+    "status": "Cost & Schedule Slip",
+    "statusColor": "red",
+    "summary": "The Orion program increased its life-cycle costs by $363 million, which officials said was due to delays to the Artemis II launch to September 2025 arising from technical challenges. A NASA official also anticipates additional cost growth after the recent announcement of an April 2026 Artemis II launch readiness date. Orion’s costs are now 5 percent above the 2021 rebaseline, and 28.5 percent above its original baseline. The 2021 rebaseline included among other things, the addition of the RPOD capability. According to NASA documentation, the delayed launch reflects the time needed to address several technical challenges, such as the heat shield issues discovered during Artemis I.\n\nIntegration and testing for the Orion Artemis II capsule is ongoing to support its planned delivery to Exploration Ground Systems in April 2025. This delivery will enable the start of integration with SLS to support an April 2026 Artemis II launch date. The agency also concluded its investigation into Orion’s heat shield material loss that occurred during Artemis I. NASA plans to change the reentry trajectory for Artemis II and use an unmodified heat shield, but will modify the hardware for future missions to allow for more reentry options without the risk of repeating the technical issues seen in Artemis I.",
+    "risks": [
+      "[Schedule] Delay in Artemis II launch: The launch date of Artemis II is delayed by 9 months to September 2025 due to technical challenges, which could impact the overall schedule.",
+      "[Cost] Cost growth for Artemis II: NASA anticipates additional cost growth after announcing Artemis II will occur in April 2026, potentially impacting the budget.",
+      "[Technical] Issues with Orion crew module batteries: Technical challenges with the Orion crew module batteries have delayed the schedule and required additional resources.",
+      "[Technical] Digital motor controller issues: Issues with digital motor controllers that operate several environmental control and life support systems have caused delays.",
+      "[Technical] Leaks in hydrazine valves: Leaks in hydrazine valves planned for installation in the crew module are driving the schedule for Artemis III."
+    ],
+    "costStatus": "The Orion program increased its life-cycle cost estimate by an additional $363 million. According to program officials, the $363 million increase was to support delaying Artemis II’s launch date by 9 months to September 2025 to address technical challenges.",
+    "scheduleStatus": "According to program officials, the $363 million increase was to support delaying Artemis II’s launch date by 9 months to September 2025 to address technical challenges. A NASA official said costs continue to be under review as they anticipate additional cost growth after NASA announced in December 2024 that Artemis II would occur in April 2026.",
+    "costData": {
+      "baseline": 11.2835,
+      "current": 14.495,
+      "baselineDate": "Sept. 2015",
+      "changePct": 28.5,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Sep 2015",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Apr 2023",
+        "event": "Baseline launch readiness date"
+      },
+      {
+        "date": "Apr 2026",
+        "event": "Latest launch readiness date"
+      }
+    ],
+    "scheduleHealth": "behind",
+    "scheduleSlipMonths": 36,
+    "timeline": [
+      {
+        "date": "Jul 2006",
+        "label": "start under Constellation program",
+        "phase": "formulation"
+      },
+      {
+        "date": "Feb 2010",
+        "label": "Orion canceled under Constellation program",
+        "phase": "formulation"
+      },
+      {
+        "date": "Feb 2012",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Aug 2014",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2014",
+        "label": "Exploration flight test",
+        "phase": "formulation"
+      },
+      {
+        "date": "Sep 2015",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Oct 2015",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Nov 2022",
+        "label": "Artemis | first uncrewed flight",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Apr 2026",
+        "label": "Artemis II launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "sep",
+    "name": "SEP",
+    "title": "Solar Electric Propulsion (SEP)",
+    "pages": [
+      63,
+      64
+    ],
+    "leadCenter": "Glenn Research Center",
+    "directorate": "Space Technology",
+    "partners": "None",
+    "launchLocation": "Kennedy Space Center, FL (with PPE)",
+    "launchVehicle": "Falcon Heavy (with PPE)",
+    "missionDuration": "15 years (with PPE)",
+    "status": "Cost & Schedule Slip",
+    "statusColor": "red",
+    "summary": "As of January 2025, the SEP project exceeded its previously rebaselined costs by $20 million and its schedule by 3 months. These increases occurred in 2023 because the project redesigned its thruster harnesses—the groupings of wire or cable that transmit signals and electrical power—in response to new requirements impacting hardware compatibility with the PPE spacecraft. NASA modified the SEP project’s contract with Aerojet Rocketdyne twice to incorporate the harness requirements changes. Aerojet Rocketdyne replanned its schedule following the most recent modification. According to project documentation, the replanned schedule extended anticipated delivery dates for the three flight thrusters by several months.\n\nThe project’s critical path to flight hardware delivery is completing the cathodes, which produce electrons for the thruster. The project redesigned the cathode to address concerns with welding that could create propellant leaks and is experiencing additional challenges with resolving issues that occurred during qualification testing of the cathode. Furthermore, the project also experienced delays in completing environmental testing of the first qualification model thruster due to issues at the Jet Propulsion Laboratory.",
+    "risks": [
+      "[Cost] Exceeded Cost by $20 million: Cost overrun due to redesign of thruster harnesses in response to new requirements impacting hardware compatibility with the PPE spacecraft.",
+      "[Schedule] Schedule Delay by 3 months: Schedule delay due to redesign of thruster harnesses and challenges in completing welding on cathode joints.",
+      "[Technical] Cathode Welding Quality Issues: Welding on cathode joints exceeded allowable porosity limits, which could lead to propellant leak and electrical breakdown after launch.",
+      "[Technical] Cathode Hardware Qualification Delays: Delays in qualifying cathode hardware due to issues with target test temperatures and component performance.",
+      "[Schedule] Environmental Testing Delays: Delays in environmental testing due to test set-up issues and wildfires surrounding the Jet Propulsion Laboratory."
+    ],
+    "costStatus": "As of January 2025, the SEP project exceeded its previously rebaselined costs by $20 million and its schedule by 3 months.",
+    "scheduleStatus": "As of January 2025, the SEP project exceeded its previously rebaselined costs by $20 million and its schedule by 3 months. The project completed assembly of the first flight model thruster—including the redesigned harness and the first of the redesigned cathodes—and completed vibration testing in January 2025.",
+    "costData": {
+      "baseline": 0.3356,
+      "current": 0.4024,
+      "baselineDate": "Feb. 2020",
+      "changePct": 19.9,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Feb 2020",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Dec 2024",
+        "event": "Baseline launch readiness date"
+      },
+      {
+        "date": "Jan 2029",
+        "event": "Latest launch readiness date"
+      }
+    ],
+    "scheduleHealth": "behind",
+    "scheduleSlipMonths": 49,
+    "timeline": [
+      {
+        "date": "Mar 2015",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "May 2016",
+        "label": "AEPS system requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Aug 2017",
+        "label": "AEPS preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Feb 2020",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Mar 2022",
+        "label": "AEPS critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Nov 2025",
+        "label": "Complete delivery of three AEPS flight thrusters to the PPE",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2029",
+        "label": "AEPS life test report complete",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "sls-block-1b",
+    "name": "SLS Block 1B",
+    "title": "Space Launch System (SLS) Block 1B",
+    "pages": [
+      65,
+      66
+    ],
+    "leadCenter": "Marshall Space Flight Center",
+    "directorate": "Exploration Systems Development",
+    "partners": "None",
+    "launchLocation": "Kennedy Space Center, FL",
+    "launchVehicle": "N/A",
+    "missionDuration": "Varied based on destination",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "SLS Block 1B is operating within the original cost and schedule baselines approved by NASA in December 2023. These baselines include a committed design certification review in January 2028, ahead of the planned Artemis IV mission in September 2028, and a life-cycle cost of approximately $4.9 billion.\n\nAccording to NASA officials, the program is encountering difficulties manufacturing both the EUS and core stage needed for Artemis IV. Program officials attributed these problems to several issues, including delays to earlier Artemis flights and delayed deliveries of parts and materials.\n\nThe SLS program completed manufacturing of some flight hardware for Artemis IV, including the engines for both the core stage and the EUS. However, development of the facilities needed to test and qualify the integrated SLS Block 1B software and avionics remains a top program risk. Continued challenges could delay qualification testing, the design certification review, and the Artemis IV launch date.",
+    "risks": [
+      "[Schedule] Delays in EUS and core stage manufacturing: Manufacturing delays for the Exploration Upper Stage (EUS) and core stage may not be resolved on time, potentially impacting the Artemis IV schedule.",
+      "[Cost] Cost overruns due to supplier delays: Delays in deliveries of materials and parts from suppliers and subcontractors could lead to cost overruns for the SLS Block 1B.",
+      "[Schedule] EUS System Integration and Test Facility-Qualification (SITF-Q) delay: Delays in the development of the SITF-Q facility could delay qualification testing, design certification review, and the Artemis IV launch date.",
+      "[Technical] SLS Block 1B flight computer radiation risk: Increased in-space radiation exposure during the EUS phase of flight could cause radiation-induced issues in the SLS Block 1B flight computers.",
+      "[Schedule] New hardware development delays: Development delays for new hardware needed for SLS Block 1B could impact the Artemis IV schedule."
+    ],
+    "costStatus": "SLS Block 1B is currently operating within the original cost and schedule baselines that NASA approved in December 2023—a committed design certification review date of January 2028, ahead of the planned Artemis IV mission in September 2028, and a life-cycle cost of approximately $4.9 billion. As of February 2025, NASA had spent over $3.4 billion developing the SLS Block 1B.",
+    "scheduleStatus": "SLS Block 1B is currently operating within the original cost and schedule baselines that NASA approved in December 2023—a committed design certification review date of January 2028, ahead of the planned Artemis IV mission in September 2028, and a life-cycle cost of approximately $4.9 billion. As of February 2025, NASA had spent over $3.4 billion developing the SLS Block 1B.",
+    "costData": {
+      "baseline": 4.9528,
+      "current": 4.9528,
+      "baselineDate": "Dec. 2023",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Dec 2023",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Jan 2028",
+        "event": "Certification review date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "2014",
+        "label": "funding start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Nov 2016",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "May 2023",
+        "label": "Integrated vehicle critical design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2023",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jul 2024",
+        "label": "Software critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Apr 2027",
+        "label": "No earlier than System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2028",
+        "label": "Design certification review date",
+        "phase": "implementation"
+      },
+      {
+        "date": "Sep 2028",
+        "label": "Artemis IV mission date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "draco",
+    "name": "DRACO",
+    "title": "Demonstration Rocket for Agile Cislunar Operations (DRACO)",
+    "pages": [
+      69,
+      70
+    ],
+    "leadCenter": "Marshall Space Flight Center",
+    "directorate": "Space Technology",
+    "partners": "None",
+    "launchLocation": "Cape Canaveral, FL",
+    "launchVehicle": "Vulcan Centaur",
+    "missionDuration": "2 months",
+    "status": "Cancelled",
+    "statusColor": "gray",
+    "summary": "NASA officials told us that on April 2, 2025, DARPA ended the DRACO project. They stated that advances in the commercial launch market, the cost and challenges of the planned demonstration, and a change in priorities at the Department of Defense led to the decision. Officials said NASA is assessing its closeout responsibilities and future plans.\n\nThe DRACO project was rescoping from its former plans to conduct an in-space demonstration of nuclear thermal propulsion. Instead, it planned to deliver a flight-ready nuclear thermal reactor engine with the option for a follow-on flight demonstration. The rescope was driven by significant program challenges revealed during the preliminary design review.\n\nProject officials said that the preliminary design review had revealed that it was not possible to achieve the original plan within the original cost and schedule estimates.",
+    "risks": [
+      "[Schedule] Unachievable original plan within cost and schedule estimates: The preliminary design review revealed that the original plan for the DRACO project could not be achieved within the given cost and schedule estimates.",
+      "[Cost] Cost overruns due to rescope: The rescope of the DRACA project, driven by significant program challenges, may lead to cost overruns.",
+      "[Schedule] Risk of further delays due to reassessment: NASA is assessing its closeout responsibilities and future plans, which might delay the project."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "",
+    "costData": null,
+    "keyMilestones": [
+      {
+        "date": "Mar 2027",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Sep 2028",
+        "event": "Schedule milestone"
+      }
+    ],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "sbg-tir",
+    "name": "SBG-TIR",
+    "title": "Earth System Observatory – Surface Biology and Geology – Thermal Infrared (SBG-TIR)",
+    "pages": [
+      71,
+      72
+    ],
+    "leadCenter": "Jet Propulsion Laboratory",
+    "directorate": "Science",
+    "partners": "Agenzia Spaziale Italiana (Italy)",
+    "launchLocation": "Kourou, French Guinea",
+    "launchVehicle": "Vega-C (ASI provided)",
+    "missionDuration": "3 years",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "In May 2024, NASA decoupled the launch schedules of SBG-TIR from the SBG Visible and Short-Wave Infrared spacecraft, citing a constrained budget environment. NASA now manages the projects separately without requiring mission operations to overlap.\n\nThe project successfully completed its two-part preliminary design review in January 2025. The project addressed several concerns after its first preliminary design review in November 2024. For example, it worked with ASI on an approach to reduce the high number of ground station contacts required to downlink data collected by SBG-TIR.\n\nProject officials also noted that there is a risk if the schedules for delivering and integrating the NASA-provided TIR instrument and the ASI-provided VNIR camera and spacecraft are not closely aligned, the project may discover incompatibilities later in the development process. This could lead to potentially costly redesigns and delays. The project is mitigating this risk by finalizing the interface technical requirements for the components and starting to use configuration control.",
+    "risks": [
+      "[Schedule] Misaligned delivery and integration schedules: Risk of discovering incompatibilities between NASA-provided TIR instrument and ASI-provided VNIR camera and spacecraft later in the development process, potentially leading to costly redesigns and delays.",
+      "[Schedule] High number of ground station contacts: Risk of requiring a high number of ground station contacts to downlink data collected by SBG-TIR, which could potentially impact the schedule and cost.",
+      "[Cost] Constrained budget environment: Risk of budget constraints affecting the project, as NASA manages SBG-TIR and SBG Visible and Short-Wave Infrared spacecraft separately due to budget constraints."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "",
+    "costData": null,
+    "keyMilestones": [
+      {
+        "date": "Oct 2027",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Apr 2028",
+        "event": "Schedule milestone"
+      }
+    ],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "msr",
+    "name": "MSR",
+    "title": "Mars Sample Return (MSR)",
+    "pages": [
+      73,
+      74
+    ],
+    "leadCenter": "NASA Headquarters",
+    "directorate": "Science",
+    "partners": "European Space Agency",
+    "launchLocation": "Eastern Range, FL (Sample Retrieval Lander) and French Guiana (Earth Return Orbiter)",
+    "launchVehicle": "TBD",
+    "missionDuration": "5 years",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "In April 2024, the NASA Science Mission Directorate responded to the findings of a September 2023 independent review board report noting the program would not be able to achieve its mission within the planned budget or sooner than 2040. The program sought input from industry and the NASA community on ways to adjust the mission architecture to ensure program costs would be less than $11 billion and that samples would be returned to Earth in the 2030s. NASA reported receiving 12 study reports.\n\nAfter reviewing the study reports, NASA announced in January 2025 that it would pursue a revised, NASA-led effort using heritage technology as well as consider a commercial approach for landing on Mars. The program plans to select one of the two landing options after the preliminary design review planned for fiscal year 2026. NASA’s current estimate states that samples could be returned as early as 2035 with total life-cycle costs under $11 billion.\n\nAccording to officials, the heritage-based landing architecture will not require additional technology development. During fiscal year 2025, the program plans to continue incorporating the architecture modifications and preparing for the preliminary design review, including maturing the design. Further, the program will align budget requirements to the newly scoped effort and continue to research commercial delivery options to develop a sufficient understanding for making a decision at the preliminary design review. To improve oversight in response to a recommendation from the independent review board, the lead office for the MSR program was transferred from the Jet Propulsion Laboratory to NASA headquarters.",
+    "risks": [
+      "[Cost] Mission cost exceeding $11 billion: The mission's total life-cycle costs might exceed the planned budget of $11 billion.",
+      "[Schedule] Mission delay beyond 2040: The mission might not be able to achieve its mission within the planned timeframe of 2040.",
+      "[Technical] Successful implementation of heritage technology: The use of heritage technology in the landing architecture could pose a risk if it does not perform as expected.",
+      "[Technical] Effectiveness of commercial delivery options: The use of commercial approaches for landing on Mars could be ineffective or costly if they do not work as planned.",
+      "[Schedule] Preliminary Design Review success: The preliminary design review in fiscal year 2026 could fail to approve the selected landing option, leading to delays."
+    ],
+    "costStatus": "The program sought input from industry and the NASA community on ways to adjust the mission architecture to ensure program costs would be less than $11 billion and that samples would be returned to Earth in the 2030s.",
+    "scheduleStatus": "",
+    "costData": null,
+    "keyMilestones": [],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "usdv",
+    "name": "USDV",
+    "title": "United States Deorbit Vehicle (USDV)",
+    "pages": [
+      75,
+      76
+    ],
+    "leadCenter": "Johnson Space Center",
+    "directorate": "Space Operations",
+    "partners": "TBD",
+    "launchLocation": "TBD",
+    "launchVehicle": "TBD",
+    "missionDuration": "18 months",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "In June 2024, NASA awarded SpaceX a contract with up to an $843 million reported value to design, build, and deliver the USDV. The project anticipates delivery of the USDV in August 2028 with a cost of approximately $1.5 billion. According to project officials, this higher cost represents the total project life cycle including the USDV, the heavy launch vehicle, launch vehicle integration, among other things related to integration, testing, training, and operations. The project plans to refine this estimate after procurement of the launch vehicle. Project officials said that NASA is beginning detailed discussions with ISS international partners on the use of USDV for deorbit.\n\nThe USDV will have two components. One will be an existing SpaceX Dragon spacecraft that has a docking mechanism and rendezvous capabilities. The other will be a larger-than-usual Dragon trunk with a new propulsion capability including more propellant tanks and thrusters.\n\nNASA identified several risks related to USDV’s larger propulsion system. For example, the larger design affects how the thrusters interact and work when clustered together. NASA will perform necessary testing and analysis, including a large-scale Reactive Module Test, to ensure the propulsion system performs as expected and to verify the propulsion system performance and system interactions. According to project officials, using appropriate sizing for the Reactive Module Test is critical for understanding the propulsion system.",
+    "risks": [
+      "[Technical] Performance of Larger Propulsion System: The larger design of the propulsion system may affect how the thrusters interact and work when clustered together, potentially impacting the performance of the USDV.",
+      "[Technical] Appropriate Sizing for Reactive Module Test: Ensuring the appropriate sizing for the Reactive Module Test is critical for understanding the propulsion system's performance and system interactions.",
+      "[Cost] Cost Overruns: The project cost of approximately $1.5 billion may increase due to potential unforeseen expenses, especially after the procurement of the launch vehicle.",
+      "[Schedule] Schedule Delays: The project schedule may be delayed due to the necessary testing and analysis of the USDV's larger propulsion system, including the large-scale Reactive Module Test."
+    ],
+    "costStatus": "In June 2024, NASA awarded SpaceX a contract with up to an $843 million reported value to design, build, and deliver the USDV. The project anticipates delivery of the USDV in August 2028 with a cost of approximately $1.5 billion.",
+    "scheduleStatus": "The project anticipates delivery of the USDV in August 2028 with a cost of approximately $1.5 billion.",
+    "costData": null,
+    "keyMilestones": [
+      {
+        "date": "Aug 2028",
+        "event": "Preliminary delivery date"
+      }
+    ],
+    "scheduleHealth": null,
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "ccp",
+    "name": "CCP",
+    "title": "Commercial Crew Program (CCP)",
+    "pages": [
+      79,
+      80
+    ],
+    "leadCenter": "Kennedy Space Center",
+    "directorate": "Space Operations",
+    "partners": "Boeing and SpaceX",
+    "launchLocation": "Boeing–Cape Canaveral Space Force Station, FL; SpaceX–Kennedy Space Center, FL",
+    "launchVehicle": "Boeing–Atlas V; SpaceX– Falcon 9",
+    "missionDuration": "",
+    "status": "Cost & Schedule Slip",
+    "statusColor": "yellow",
+    "summary": "CCP and Boeing are working to certify Boeing’s crew transportation system to fly service missions to the ISS after Boeing’s crewed flight test returned to Earth without crew in September 2024. Five thrusters failed during the crewed flight test, which CCP’s program manager said affected vehicle control of Boeing’s Starliner spacecraft. NASA decided to return the Starliner uncrewed due to uncertainty about the Starliner’s ability to safely execute the deorbit burn. The CCP program manager said the deorbit burn is controlled by the flight computer and cannot be stopped after a certain point if there are significant failures.\n\nCCP is not planning for another crewed flight test before Boeing’s certification review. The CCP program manager said that Boeing’s next flight will be the first post-certification, or service, mission. However, they said Boeing’s service missions may be cargo or crewed missions. As of November 2024, CCP reported that that it had not yet assessed the effect of Boeing’s crewed flight test on Boeing’s path to certification.",
+    "risks": [
+      "[Technical] Thruster Failure Risk: Five out of 28 service module reaction control thrusters failed during the crewed flight test, affecting vehicle control and mission success.",
+      "[Technical] Helium Leak Risk: Several helium leaks occurred during the crewed flight test, which could potentially affect the operation of the thruster propellant valves.",
+      "[Schedule] Certification Delay Risk: The effect of the crewed flight test on Boeing’s path to certification is not yet assessed, potentially delaying the certification review.",
+      "[Cost] Cost Overrun Risk: Hardware and operational solutions to address thruster and helium leak issues may increase costs."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "CCP and Boeing are working to certify Boeing’s crew transportation system to fly service missions to the ISS after Boeing’s crewed flight test returned to Earth without crew in September 2024. The CCP program manager said that CCP’s certification process missed the thruster issue, and the program is trying to figure out why.",
+    "costData": {
+      "baseline": 2.5987,
+      "current": 2.7577,
+      "baselineDate": null,
+      "changePct": 6.1,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Sep 2014",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Apr 2017",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Aug 2017",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Nov 2020",
+        "event": "Schedule milestone"
+      },
+      {
+        "date": "Fall 2025",
+        "event": "Schedule milestone"
+      }
+    ],
+    "scheduleHealth": "behind",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Sep 2014",
+        "label": "Transportation capabilities contract phase awards",
+        "phase": "implementation"
+      },
+      {
+        "date": "Mar 2019",
+        "label": "uncrewed test flight",
+        "phase": "implementation"
+      },
+      {
+        "date": "Dec 2019",
+        "label": "Boeing uncrewed test flight-1",
+        "phase": "implementation"
+      },
+      {
+        "date": "May 2020",
+        "label": "SpaceX crewed test flight",
+        "phase": "implementation"
+      },
+      {
+        "date": "Nov 2020",
+        "label": "SpaceX final certification and first post- certification flight",
+        "phase": "implementation"
+      },
+      {
+        "date": "May 2022",
+        "label": "Boeing uncrewed flight-2",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jun–Sep 2024",
+        "label": "Boeing test flight",
+        "dateRangeStart": "Jun 2024",
+        "dateRangeEnd": "Sep 2024",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": null,
+        "label": "Boeing final certification",
+        "phase": "implementation"
+      },
+      {
+        "date": null,
+        "label": "2020-2030 Post- certification operational missions",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "cosi",
+    "name": "COSI",
+    "title": "Compton Spectrometer and Imager (COSI)",
+    "pages": [
+      81,
+      82
+    ],
+    "leadCenter": "Goddard Space Flight Center",
+    "directorate": "Science",
+    "partners": "Agenzia Spaziale Italiana (Italy)",
+    "launchLocation": "Cape Canaveral Space Force Station, FL",
+    "launchVehicle": "Falcon 9",
+    "missionDuration": "24 months",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "In April 2024, COSI established cost and schedule baselines of $273 million and November 2027, respectively. The project is currently operating within these baselines. The project held its critical design review in December 2024 and successfully passed the review.\n\nThe project is tracking a risk of germanium detector delivery delays, which would delay instrument integration and testing. The germanium detectors collect high-energy radiation data for the instrument. Officials said that Lawrence Berkeley National Lab could fall behind in germanium detector production due to supplier issues and personnel changes. The project is pursuing the purchase of detectors from another supplier as a backup to keep the project on schedule. As of February 2025, the detector delivery remains behind schedule.\n\nIn 2024, the project delayed testing for approximately 6 months because it moved testing to a different facility at the Goddard Space Flight Center. The lab that was used to test the cryocooler—officials said that this is the system that keeps the detectors cold—had to be moved and reassembled in another building. This move affected the test schedule of components and programming of the cryocooler’s microchip. The component needed to be tested in this lab, which was completed in December 2024. The risk of delays has been largely mitigated.",
+    "risks": [
+      "[Schedule] Germanium Detector Delivery Delay: Delays in germanium detector delivery from Lawrence Berkeley National Lab could delay instrument integration and testing, impacting the project schedule.",
+      "[Schedule] Cryocooler Testing Delay: Move of testing facility for cryocooler, a system that keeps detectors cold, caused a 6-month delay in testing, potentially affecting the project schedule."
+    ],
+    "costStatus": "In April 2024, COSI established cost and schedule baselines of $273 million and November 2027, respectively.",
+    "scheduleStatus": "In April 2024, COSI established cost and schedule baselines of $273 million and November 2027, respectively.",
+    "costData": {
+      "baseline": 0.2733,
+      "current": 0.2733,
+      "baselineDate": "Apr. 2024",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Apr 2024",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Nov 2027",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "dragonfly",
+    "name": "Dragonfly",
+    "title": "Dragonfly",
+    "pages": [
+      83,
+      84
+    ],
+    "leadCenter": "Marshall Space Flight Center",
+    "directorate": "Science",
+    "partners": "Centre National d'Etudes Spatiales (France); Japan Aerospace Exploration Agency; German Aerospace Center",
+    "launchLocation": "Kennedy Space Center, FL",
+    "launchVehicle": "Falcon Heavy",
+    "missionDuration": "10 years",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "In May 2024, the Dragonfly project entered the implementation phase and formally established a baseline life-cycle cost of $3.4 billion and a July 2028 launch readiness date. According to the project, the fiscal year 2025 budget will be challenging due to funding constraints. Dragonfly will reassess its cost reserves following the critical design review (CDR), which began in April 2025.\n\nThe project continues to make progress on the rotorcraft lander and its instruments. Dragonfly is continuing to mature its design as it works toward its CDR. As of March 2025, the project completed almost all of the planned subsystem and instrument CDRs. Project officials said they plan to complete the remaining by Dragonfly’s CDR. While the project continues to make progress on the designs of its subsystems and instruments, it faces cost and schedule challenges that it is working to resolve within its current resources.",
+    "risks": [
+      "[Schedule] Late delivery of pump assembly: Delay in delivery of pump assembly may impact progress in preparation for lander delivery and flight system integration.",
+      "[Schedule] Late delivery of fans: Late delivery of fans may not be present for an important test during the lander integration and test, impacting thermal system.",
+      "[Technical] Battery temperature control: Lander's battery temperature cannot be held within the specified temperature limits, which may degrade battery capacity and impact flight performance.",
+      "[Schedule] Late delivery of lidar: Delay in delivery of lidar may delay Dragonfly's integration and test schedule and possibly its launch.",
+      "[Cost] Fiscal year 2025 budget constraints: Dragonfly's fiscal year 2025 budget is constrained, potentially impacting project costs."
+    ],
+    "costStatus": "NASA set a baseline life-cycle cost of $3.4 billion and a July 2028 launch readiness date. This is $852 million more than the top end of the project's preliminary cost estimate and 13 months later than its preliminary schedule estimate.",
+    "scheduleStatus": "NASA set a baseline life-cycle cost of $3.4 billion and a July 2028 launch readiness date. One of the replans occurred after the project’s March 2023 preliminary design review and resulted in the new July 2028 launch readiness date.",
+    "costData": {
+      "baseline": 3.3524000000000003,
+      "current": 3.3524000000000003,
+      "baselineDate": "May. 2024",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "May 2024",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Jul 2028",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Jun 2019",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Aug 2020",
+        "label": "Internal system requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Feb 2023",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "May 2024",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Apr 2025",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Apr 2027",
+        "label": "System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jul 2028",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "epfd",
+    "name": "EPFD",
+    "title": "Electrified Powertrain Flight Demonstration (EPFD)",
+    "pages": [
+      85,
+      86
+    ],
+    "leadCenter": "Virtual Project Office",
+    "directorate": "Aeronautics Research",
+    "partners": "None",
+    "launchLocation": "",
+    "launchVehicle": "",
+    "missionDuration": "",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "In October 2024, the EPFD project entered the implementation phase and formally established a baseline life-cycle cost of $655 million and a May 2028 first electrified flight date. The project is currently working within its cost and schedule baselines.\n\nGE successfully completed its critical design review last year and has made progress maturing several of its critical technologies. The project is tracking a risk that GE’s test schedule may be too aggressive. The project is coordinating with GE to prioritize what data can be provided to the project so that it can independently assess the data.\n\nmagniX successfully completed its preliminary design review last year. One of the key efforts for magniX is the design and development of its batteries, which will power the electric engines during flight. The project is tracking a risk that delays in maturing this system could lead to rework in the future.",
+    "risks": [
+      "[Cost] Exceeded cost baseline: The life-cycle cost of $655 million is approximately $185 million more than the highest preliminary cost estimate.",
+      "[Schedule] Delayed schedule: The first electrified flight date is approximately 3.5 years after the preliminary schedule estimate.",
+      "[Cost] Funding availability risk: The project may face funding limitations in future fiscal years due to forecasted progress through fiscal year 2026.",
+      "[Technical] GE airworthiness and safety risks: GE has eight action items from the critical design review related to airworthiness, safety of flight, and technical risk.",
+      "[Technical] GE test schedule aggressiveness risk: There is a risk that GE's test schedule may be too aggressive, reducing the time available for GE to assess and analyze test results."
+    ],
+    "costStatus": "In October 2024, the EPFD project entered the implementation phase and formally established a baseline life-cycle cost of $655 million and a May 2028 first electrified flight date. This cost baseline is approximately $185 million more than the highest preliminary cost estimate.",
+    "scheduleStatus": "In October 2024, the EPFD project entered the implementation phase and formally established a baseline life-cycle cost of $655 million and a May 2028 first electrified flight date. Both partners are working toward earlier first flight dates, but NASA anticipates that the first flights are more likely to occur in 2028. magniX. magniX completed its preliminary design review in February 2024 and is responding to key action items from the review.",
+    "costData": {
+      "baseline": 0.6548999999999999,
+      "current": 0.6548999999999999,
+      "baselineDate": "Oct. 2024",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Oct 2024",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "May 2028",
+        "event": "First flight date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Sep 2021",
+        "label": "Contract awards",
+        "phase": "formulation"
+      },
+      {
+        "date": "2022",
+        "label": "GE system requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "2022",
+        "label": "GE preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "2023",
+        "label": "magnix system requirements review",
+        "phase": "formulation"
+      },
+      {
+        "date": "2024",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "2024",
+        "label": "GE design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Oct 2024",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "2026",
+        "label": "magnixX critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "May 2028",
+        "label": "magnixX first electrified flight",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "grace-c",
+    "name": "GRACE-C",
+    "title": "Earth System Observatory (ESO) – Gravity Recovery and Climate Experiment – Continuity (GRACE-C)",
+    "pages": [
+      87,
+      88
+    ],
+    "leadCenter": "Jet Propulsion Laboratory",
+    "directorate": "Science",
+    "partners": "German Aerospace Center",
+    "launchLocation": "TBD",
+    "launchVehicle": "Falcon 9",
+    "missionDuration": "3 years",
+    "status": "In Formulation",
+    "statusColor": "yellow",
+    "summary": "In May 2024, GRACE-C established cost and schedule baselines of $658 million and July 2029, respectively. This cost baseline is approximately $40 million more than the highest preliminary cost estimate. The project is currently working within its baselines.\n\nAccording to officials, GRACE-C has no critical technologies because it is reusing much of the technology and design for the spacecraft and instrument from the previous iteration, GRACE-Follow On, with some changes due to obsolescence.\n\nThe project held and passed its preliminary design review in March 2024 and its critical design review in May 2025. At the critical design review, the standing review board’s top concern was incompatibility with the Near Space Network ground terminals, which is a known issue for GRACE-Follow On and could affect GRACE-C if not resolved.\n\nThe top risk for the project is a delivery delay of the optical bench electronics due to issues with a redesign for redundancy, which would delay the delivery of the primary instrument. These electronics are developed by the German Aerospace Center and maintain alignment of specific satellite components.",
+    "risks": [
+      "[Schedule] Delivery delay of optical bench electronics: Delay in delivery of primary instrument electronics due to redesign issues, potentially causing project schedule disruption.",
+      "[Technical] Incompatibility with Near Space Network ground terminals: Potential issue with compatibility of GRACE-C with ground terminals, which was a problem for GRACE-Follow On and could affect GRACE-C.",
+      "[Cost] Cost overrun: Cost baseline is $40 million more than the highest preliminary cost estimate, indicating potential cost concerns."
+    ],
+    "costStatus": "In May 2024, GRACE-C established cost and schedule baselines of $658 million and July 2029, respectively. This cost baseline is approximately $40 million more than the highest preliminary cost estimate.",
+    "scheduleStatus": "In May 2024, GRACE-C established cost and schedule baselines of $658 million and July 2029, respectively.",
+    "costData": null,
+    "keyMilestones": [
+      {
+        "date": "May 2024",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Jul 2029",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "imap",
+    "name": "IMAP",
+    "title": "Interstellar Mapping and Acceleration Probe (IMAP)",
+    "pages": [
+      89,
+      90
+    ],
+    "leadCenter": "Goddard Space Flight Center",
+    "directorate": "Science",
+    "partners": "Polish Academy of Sciences (Poland), University of Bern (Switzerland), Imperial College of London (UK)",
+    "launchLocation": "Cape Canaveral Space Force Station, FL",
+    "launchVehicle": "Falcon 9",
+    "missionDuration": "2 years",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "The IMAP project continues to operate within the cost and schedule baselines that NASA established in July 2021. The project adjusted its schedule within its baseline to accommodate instrument delivery delays and technical challenges. The project will use headquarters-held funding reserves to support the schedule adjustment and remain on track to launch by December 2025 and within its cost baseline.\n\nIMAP personnel successfully installed and integrated all of IMAP’s instruments onto the spacecraft. The project is addressing an issue on the Compact Dual Ion Composition Experiment (CoDICE) instrument related to an electrical leak. Project officials stated they have a mitigation plan to address the issue.\n\nThe project completed shipment of the spacecraft to Marshall Space Flight Center in March 2025. The project shifted test sites to avoid conflicts with other NASA projects. Specifically, IMAP moved testing to Marshall Space Flight Center because testing facilities were unavailable at Goddard Space Flight Center. Following testing at Marshall, the spacecraft will be shipped to Cape Canaveral Space Force Station for the launch.",
+    "risks": [
+      "[Schedule] Instrument Delay Risk: Delays in instrument delivery due to material changes, potentially impacting schedule and cost",
+      "[Technical] Electrical Issue on CoDICE Instrument: Electrical leak in CoDICE instrument's high-voltage power supply, posing a high-level risk",
+      "[Schedule] Conflicts with Other NASA Projects: Risk of delays due to facility availability conflicts with other NASA projects",
+      "[Technical] Testing Completion Risk: Potential risk of incomplete testing before launch, increasing mission-critical issues",
+      "[Cost] Cost Overrun Risk: Potential for cost overrun due to unforeseen technical risks and test activities"
+    ],
+    "costStatus": "Officials told us that in December 2024, NASA provided headquarters-held cost reserves to the project to address open technical risks and to complete remaining test activities within the cost baseline. This mitigation cost approximately $2.4 million of project-held reserves to cover travel and shipping costs, within the cost baseline.",
+    "scheduleStatus": "The IMAP project continues to operate within the cost and schedule baselines that NASA established in July 2021. In December 2024, the project adjusted its schedule due to instrument delivery delays and existing technical risks but remained on track to meet its launch date of December 2025.",
+    "costData": {
+      "baseline": 0.7817999999999999,
+      "current": 0.7817999999999999,
+      "baselineDate": "July. 2021",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Jul 2021",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Dec 2025",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "May 2018",
+        "label": "Start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Dec 2019",
+        "label": "System requirements/ mission definition review",
+        "phase": "formulation"
+      },
+      {
+        "date": "May 2021",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jul 2021",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2023",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Sep 2023",
+        "label": "System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Dec 2025",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "lbfd",
+    "name": "LBFD",
+    "title": "Low Boom Flight Demonstrator (LBFD)",
+    "pages": [
+      91,
+      92
+    ],
+    "leadCenter": "Virtual Project Office",
+    "directorate": "Aeronautics Research",
+    "partners": "None",
+    "launchLocation": "",
+    "launchVehicle": "",
+    "missionDuration": "",
+    "status": "Cost & Schedule Slip",
+    "statusColor": "red",
+    "summary": "NASA set new cost and schedule estimates for the LBFD project following an 11-month delay to the project’s first flight date. Schedule delays were driven by issues related to testing and staffing. For example, software testing led to delays because only one of two software testing facilities was fully available in 2024. According to NASA documentation, the contractor plans to continue to use its own funds to complete some work associated with related delays.\n\nProject officials said they made significant progress by completing engine testing and a flight readiness review, which mark the beginning of integrated testing and the airworthiness process, respectively. If the project can complete its first flight by its estimated date of September 2025, then the greater Quesst mission should be able to support a 2031 international committee meeting that develops recommendations for aviation environmental standards with a complete set of community response data as planned. However, delays beyond this date could result in the Quesst mission delivering a partial dataset in support of the 2031 committee and delaying the complete dataset until 2034.",
+    "risks": [
+      "[Schedule] Software testing delay: Software testing issues led to a delay in aircraft testing, affecting the project's schedule",
+      "[Schedule] Engine run test delay: Issues with engine run tests took longer than expected, causing a delay in the project",
+      "[Schedule] Flight test staffing challenges: Contractor staffing issues related to the transition from production to flight test team contributed to delays",
+      "[Technical] Potential sonic boom loudness: Risk that the aircraft's sonic boom will be too loud, which could impact the project's success",
+      "[Schedule] Risk to Quesst mission: Delay in LBFD's first flight could impact the Quesst mission's ability to provide complete data for the 2031 Committee on Aviation Environmental Protection meeting"
+    ],
+    "costStatus": "The project added approximately $64 million to the life-cycle cost to accommodate this delay.",
+    "scheduleStatus": "The project’s cost and schedule performance has continued to decline since the project rebaselined in January 2024. Since then, first flight was delayed by 11 months from October 2024 to September 2025.",
+    "costData": {
+      "baseline": 0.5824,
+      "current": 0.9024,
+      "baselineDate": "Nov. 2018",
+      "changePct": 54.9,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Nov 2018",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Jan 2022",
+        "event": "Baseline first flight date"
+      },
+      {
+        "date": "Sep 2025",
+        "event": "Latest first flight date"
+      }
+    ],
+    "scheduleHealth": "behind",
+    "scheduleSlipMonths": 44,
+    "timeline": [
+      {
+        "date": "Mar 2013",
+        "label": "Start of concept studies",
+        "phase": "formulation"
+      },
+      {
+        "date": "Mar 2014",
+        "label": "Mission definition review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Sep 2016",
+        "label": "LBFD start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Aug 2018",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Nov 2018",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Sep 2019",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Sep 2025",
+        "label": "Latest first flight date",
+        "phase": "implementation"
+      },
+      {
+        "date": "Feb 2026",
+        "label": "Systems acceptance review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2027",
+        "label": "Aircraft transfer review",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "muse",
+    "name": "MUSE",
+    "title": "MUlti-slit Solar Explorer (MUSE)",
+    "pages": [
+      93,
+      94
+    ],
+    "leadCenter": "Goddard Space Flight Center",
+    "directorate": "Science",
+    "partners": "Italian Space Agency, German Aerospace Center, Norwegian Space Agency",
+    "launchLocation": "TBD",
+    "launchVehicle": "TBD",
+    "missionDuration": "2 years",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "In November 2024, MUSE established cost and schedule baselines of $389.3 million and November 2027, respectively.\n\nAccording to program documentation, the project is operating within its baselines and has sufficient cost and schedule reserves. MUSE successfully completed its preliminary design review in March 2024. As of November 2024, it had addressed all concerns raised by the standing review board, such as readiness for procurement of flight hardware and build activities that occur before the critical design review. The project will go through several sets of peer reviews before the critical design review, planned for April 2025.\n\nProject officials told us that they are preemptively tracking risks associated with the reaction wheels. Reaction wheels are essential because they help orient telescopes in space. Officials stated that NASA experienced issues with this contractor’s reaction wheels on prior missions, including the reaction wheels changing the direction of their rotation during a firmware update. These issues caused rework late in those projects’ development. The MUSE project held a technical meeting with the contractor to begin addressing the concerns.",
+    "risks": [
+      "[Technical] Risk of Reaction Wheel Malfunction: Potential for reaction wheels to change direction of rotation during firmware update, causing delays and additional costs.",
+      "[Schedule] Schedule Risk due to Reaction Wheel Issues: Possibility of delays due to rework required for reaction wheel malfunctions.",
+      "[Cost] Cost Risk due to Reaction Wheel Issues: Potential for increased costs due to rework required for reaction wheel malfunctions."
+    ],
+    "costStatus": "In November 2024, MUSE established cost and schedule baselines of $389.3 million and November 2027, respectively.",
+    "scheduleStatus": "In November 2024, MUSE established cost and schedule baselines of $389.3 million and November 2027, respectively.",
+    "costData": {
+      "baseline": 0.38930000000000003,
+      "current": 0.38930000000000003,
+      "baselineDate": "Nov. 2024",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Nov 2024",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Nov 2027",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": []
+  },
+  {
+    "id": "neo-surveyor",
+    "name": "NEO Surveyor",
+    "title": "Near Earth Object (NEO) Surveyor",
+    "pages": [
+      95,
+      96
+    ],
+    "leadCenter": "Jet Propulsion Laboratory",
+    "directorate": "Science",
+    "partners": "None",
+    "launchLocation": "TBD",
+    "launchVehicle": "Falcon 9",
+    "missionDuration": "5 years",
+    "status": "Within Baseline",
+    "statusColor": "green",
+    "summary": "The NEO Surveyor project continues to operate within the cost and schedule baselines set in December 2022. However, the project faces funding challenges with limited cost reserves in fiscal year 2025. The baseline funding profile for the project was approved, but the project did not receive funding from NASA headquarters for the amount of cost reserves expected in fiscal years 2023 and 2024. The project completed its critical design review in February 2025.\n\nThe project office is tracking multiple technical risks but is making progress on some risks and working on mitigation steps for others. For example, the project faces cost and schedule risks related to qualification testing of the spacecraft’s propulsion tank. The project developed mitigation options and chose an alternate supplier that could deliver a qualified tank ahead of the need date. The project also started a thermal test that is important for the overall verification of the instrument enclosure to protect the telescope.",
+    "risks": [
+      "[Cost] Funding Challenges: Limited funding may cause project costs in fiscal year 2025 to exceed available reserves.",
+      "[Schedule] SLS Program Delay: SLS program's testing schedule delay could cause a risk to NEO Surveyor's schedule.",
+      "Complex Thermal Testing: Complex thermal testing poses a risk to cost and schedule if test replans are necessary.",
+      "Subcomponent Workmanship Issues: Quality issues with subcomponents may cause delays in spacecraft propulsion schedule."
+    ],
+    "costStatus": "",
+    "scheduleStatus": "While the NEO Surveyor project continues to operate within the cost and schedule baselines set in December 2022, the project faces funding challenges.",
+    "costData": {
+      "baseline": 1.5951,
+      "current": 1.5951,
+      "baselineDate": "Dec. 2022",
+      "changePct": 0.0,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Dec 2022",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Jun 2028",
+        "event": "Launch readiness date (on schedule)"
+      }
+    ],
+    "scheduleHealth": "on",
+    "scheduleSlipMonths": null,
+    "timeline": [
+      {
+        "date": "Jun 2020",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Sep 2020",
+        "label": "System requirements/ mission definition review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Sep 2022",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Nov 2022",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Feb 2025",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jul 2026",
+        "label": "System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jun 2028",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "nisar",
+    "name": "NISAR",
+    "title": "NASA–Indian Space Research Organisation (ISRO) Synthetic Aperture Radar (NISAR)",
+    "pages": [
+      97,
+      98
+    ],
+    "leadCenter": "Jet Propulsion Laboratory (JPL)",
+    "directorate": "Science",
+    "partners": "Indian Space Research Organisation",
+    "launchLocation": "Satish Dhawan Space Centre, India",
+    "launchVehicle": "Geosynchronous Satellite Launch Vehicle Mark II",
+    "missionDuration": "3 years",
+    "status": "Cost & Schedule Slip",
+    "statusColor": "red",
+    "summary": "The NISAR project added $40.9 million to its previously rebaselined cost and delayed its planned launch by 8 months to June 2025. Repairs to the NISAR reflector, which is designed to transmit and receive signals to and from Earth’s surface, delayed the launch date. Following the eclipse season, which runs from October through January, the launch was further delayed due to ISRO’s launch schedule. NISAR is expected to launch no earlier than June 2025. NASA anticipates needing additional funding because of the delays.\n\nEarly in 2024, a JPL analysis found discrepancies between the thermal model for the NISAR reflector and the thermal vacuum chamber test results. In March 2024, the project shipped the reflector from India back to the contractor in the U.S. The contractor applied reflective tape, among other precautionary measures, to mitigate temperature increases the reflector may be exposed to when it is deployed on-orbit. The reflector arrived back to ISRO at the end of October 2024 and integration and testing was completed in November 2024.\n\nThe NISAR launch date also depends on the launch pad schedule. Officials said that ISRO has launches planned before the NISAR launch, and changes to the launch pad schedule and maintenance time frames between launches can affect the NISAR launch date. As of April 2025, the spacecraft is in storage in India awaiting launch.",
+    "risks": [
+      "[Schedule] Reflector Repair Delay: Delay in launch due to repairs to the NISAR reflector",
+      "[Schedule] Eclipse Season Delay: Further delay in launch due to ISRO's launch schedule during the eclipse season",
+      "[Schedule] Launch Pad Schedule Dependency: Potential delay in launch due to ISRO's launch pad schedule and maintenance time frames",
+      "[Technical] Thermal Model Discrepancies: Potential issues with the thermal model of the NISAR reflector",
+      "[Cost] Additional Funding Needed: NASA anticipates needing additional funding due to project delays"
+    ],
+    "costStatus": "The NISAR project added $40.9 million to its previously rebaselined cost and delayed its planned launch by 8 months to June 2025.",
+    "scheduleStatus": "The NISAR project added $40.9 million to its previously rebaselined cost and delayed its planned launch by 8 months to June 2025.",
+    "costData": {
+      "baseline": 0.8669,
+      "current": 1.1589,
+      "baselineDate": "Aug. 2016",
+      "changePct": 33.7,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Aug 2016",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Sep 2022",
+        "event": "Baseline launch readiness date"
+      },
+      {
+        "date": "Jun 2025",
+        "event": "Latest launch readiness date"
+      }
+    ],
+    "scheduleHealth": "behind",
+    "scheduleSlipMonths": 33,
+    "timeline": []
+  },
+  {
+    "id": "roman",
+    "name": "Roman",
+    "title": "Nancy Grace Roman Space Telescope (Roman)",
+    "pages": [
+      99,
+      100
+    ],
+    "leadCenter": "Goddard Space Flight Center",
+    "directorate": "Science",
+    "partners": "European Space Agency, Centre National d’Etudes Spatiales (France), Japan Aerospace Exploration Agency, Max Planck Institute (Germany)",
+    "launchLocation": "Kennedy Space Center/Eastern Range, FL",
+    "launchVehicle": "Falcon Heavy",
+    "missionDuration": "5 years (does not include on- orbit commissioning)",
+    "status": "Cost & Schedule Slip",
+    "statusColor": "yellow",
+    "summary": "The Roman project continues to operate within its life-cycle cost of $4.3 billion and launch readiness date of May 2027. The Roman project was approved to enter the system assembly, integration and test, and launch phase—phase D—in March 2025. The project continues to execute according to its schedule.\n\nAll of the Roman components have been delivered to the Goddard Space Flight Center and the project is proceeding with integration and testing of these components. For example, the project integrated the Coronagraph Instrument (CGI) and the Wide Field Instrument to its instrument carrier. The project is continuing with integration and testing of the observatory.",
+    "risks": [
+      "[Technical] Thruster Intermittent Failure Risk: Potential issue with the thruster intermittently failing to fire, which could impact spacecraft operations.",
+      "[Technical] CGI Design Single Point Failure Risk: Possible single point failures in the CGI design accepted early in its development, which could impact the instrument's performance.",
+      "[Technical] Temperature Control Risk: Challenge in maintaining the temperature of the instrument detectors at 23°C or below during launch, which could impact the performance of the Roman observatory.",
+      "[Schedule] Schedule Delay Risk: Potential delay in the launch readiness date due to additional testing and mitigation efforts for the thruster issue.",
+      "[Cost] Cost Overrun Risk: Possible cost overrun due to additional testing and mitigation efforts for the thruster issue, and potential delays in the launch readiness date."
+    ],
+    "costStatus": "The replan set an estimated life-cycle cost of $4.3 billion and an estimated launch readiness date of May 2027, which is $382 million and 7 months above the original baselines, due to impacts from COVID-19. NASA released headquarters-held cost reserves, increasing the project’s cost reserves for phase D from 12.9 to about 20 percent which meets the amount required by the Goddard Space Flight Center procedural requirements.",
+    "scheduleStatus": "The Roman project continues to operate within its revised cost and schedule commitments approved in the June 2021 replan. The replan set an estimated life-cycle cost of $4.3 billion and an estimated launch readiness date of May 2027, which is $382 million and 7 months above the original baselines, due to impacts from COVID-19.",
+    "costData": {
+      "baseline": 3.934,
+      "current": 4.316,
+      "baselineDate": "Feb. 2020",
+      "changePct": 9.7,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Feb 2020",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Oct 2026",
+        "event": "Baseline launch readiness date"
+      },
+      {
+        "date": "May 2027",
+        "event": "Latest launch readiness date"
+      }
+    ],
+    "scheduleHealth": "behind",
+    "scheduleSlipMonths": 7,
+    "timeline": [
+      {
+        "date": "Feb 2016",
+        "label": "start",
+        "phase": "formulation"
+      },
+      {
+        "date": "Mar 2018",
+        "label": "System requirements/ mission definition review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Oct 2019",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Feb 2020",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Sep 2021",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Sep 2024",
+        "label": "System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "May 2027",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  },
+  {
+    "id": "spherex",
+    "name": "SPHEREx",
+    "title": "Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx)",
+    "pages": [
+      101,
+      102
+    ],
+    "leadCenter": "Jet Propulsion Laboratory",
+    "directorate": "Science",
+    "partners": "Korea Astronomy and Space Science Institute",
+    "launchLocation": "Vandenberg Space Force Base, CA",
+    "launchVehicle": "Falcon 9",
+    "missionDuration": "25 Months",
+    "status": "Cost Growth",
+    "statusColor": "yellow",
+    "summary": "The SPHEREx project continues to operate within its revised January 2024 cost baseline. The project has used headquarters-held reserves to align with laboratory guidance reserve levels while addressing the project’s technical challenges discovered during testing and experiencing institutional rate increases.\n\nSPHEREx successfully launched in March 2025, approximately 1 month ahead of its baseline launch readiness date. The project had been addressing challenges as it prepared for launch and operations. These challenges include network access and software challenges impacting data collection and transmission, mobility hardware issues, and thermal controls that affect data imaging. Additionally, the project cited staff burnout, as a result of workforce reduction, as a concern they were tracking that could lead to mission disruption as it approached mission operations.",
+    "risks": [
+      "[Technical] Technical risk: Inaccurate data readings or system non-responsiveness: Challenges with instrument control electronics could lead to inaccurate data readings or render the system non-responsive, posing a risk to the project's ability to meet its baseline mission.",
+      "[Technical] Technical risk: Impaired thermal imaging device performance: Decontamination heater failure and concern about backup heater failure could result in the telescope absorbing ice and impairing the thermal imaging device’s performance.",
+      "[Technical] Technical risk: Network challenges: Challenges with the Near Space Network—which SPHEREx needs to downlink data—related to new software development, network configuration, and a lack of automation at the ground stations.",
+      "[Schedule] Schedule risk: Staff burnout: Severe staff burnout could lead to critical errors due to reduced capacity to check work and delay operational timelines.",
+      "[Cost] Cost risk: Additional expenses for rework and analyses: Anomalies with reaction wheels required a series of hardware, software, and firmware rework, resulting in additional expenses for analyses and overseeing the rework."
+    ],
+    "costStatus": "In August 2024, the project received $5.1 million in headquarters-held reserves. Of this, $4.5 million was used to meet Jet Propulsion Laboratory guidance for minimum reserves after the project had experienced prolonged technical challenges and institutional rate increases.",
+    "scheduleStatus": "The SPHEREx project has maintained its cost baseline since it was revised as part of the key decision point D in January 2024. SPHEREx launched on March 11, 2025, which is 1 month before its April 2025 baseline launch readiness date.",
+    "costData": {
+      "baseline": 0.45139999999999997,
+      "current": 0.48810000000000003,
+      "baselineDate": "Jan. 2021",
+      "changePct": 8.1,
+      "unit": "B"
+    },
+    "keyMilestones": [
+      {
+        "date": "Jan 2021",
+        "event": "Approval (KDP-C)"
+      },
+      {
+        "date": "Apr 2025",
+        "event": "Baseline launch readiness date"
+      },
+      {
+        "date": "Mar 2025",
+        "event": "Latest launch readiness date"
+      }
+    ],
+    "scheduleHealth": "ahead",
+    "scheduleSlipMonths": -1,
+    "timeline": [
+      {
+        "date": "Feb 2019",
+        "label": "Project selection",
+        "phase": "formulation"
+      },
+      {
+        "date": "Oct 2019",
+        "label": "Project mission system review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Oct 2020",
+        "label": "Preliminary design review",
+        "phase": "formulation"
+      },
+      {
+        "date": "Jan 2021",
+        "label": "Key decision Point C",
+        "phase": "kdp"
+      },
+      {
+        "date": "Jan 2022",
+        "label": "Critical design review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Nov 2023",
+        "label": "System integration review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Jan 2025",
+        "label": "GAO review",
+        "phase": "implementation"
+      },
+      {
+        "date": "Mar 2025",
+        "label": "Latest launch readiness date",
+        "phase": "implementation"
+      }
+    ]
+  }
+];
+
+</script>
+<script>
+(function(){
+  const projects = window.PROJECTS;
+
+  // Helpers
+  const $ = (id) => document.getElementById(id);
+  const fmtMoney = (b) => {
+    // b is in billions
+    if (b == null || isNaN(b)) return "—";
+    if (b >= 1) return "$" + b.toFixed(b >= 10 ? 1 : 2) + "B";
+    return "$" + Math.round(b * 1000) + "M";
+  };
+  const escapeHtml = (s) => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  // ─────────────────────────────────────────────────────────────────────
+  // Schedule helpers
+  // ─────────────────────────────────────────────────────────────────────
+  const _MONTH_IX = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Sept:8,Oct:9,Nov:10,Dec:11};
+
+  function parseMonYear(s){
+    if (!s) return null;
+    const m = String(s).trim().match(/^([A-Za-z]+)\.?\s*(\d{4})$/);
+    if (!m) return null;
+    const mi = _MONTH_IX[m[1].slice(0,3)];
+    if (mi === undefined) return null;
+    return new Date(parseInt(m[2],10), mi, 1);
+  }
+
+  function fmtDate(d){
+    if (!d) return "—";
+    return d.toLocaleString("en-US",{month:"short",year:"numeric"});
+  }
+
+  // Which projects have image assets (thumb and/or 2-page report).
+  // Add entries here as new images get dropped into /images/.
+  const IMAGES = {
+    "eva-development": {
+        "thumb": "images/eva-development_thumb.jpeg",
+        "pages": [
+            "images/eva-development_page1.png",
+            "images/eva-development_page2.png"
+        ]
+    },
+    "ltv": {
+        "thumb": "images/ltv_thumb.jpeg",
+        "pages": [
+            "images/ltv_page1.png"
+        ]
+    },
+    "sld": {
+        "thumb": "images/sld_thumb.jpeg",
+        "pages": [
+            "images/sld_page1.png"
+        ]
+    },
+    "sls-block-2": {
+        "thumb": "images/sls-block-2_thumb.jpeg",
+        "pages": [
+            "images/sls-block-2_page1.png"
+        ]
+    },
+    "halo": {
+        "thumb": "images/halo_thumb.jpeg",
+        "pages": [
+            "images/halo_page1.png",
+            "images/halo_page2.png"
+        ]
+    },
+    "ppe": {
+        "thumb": "images/ppe_thumb.jpeg",
+        "pages": [
+            "images/ppe_page1.png",
+            "images/ppe_page2.png"
+        ]
+    },
+    "hls-initial-capability": {
+        "thumb": "images/hls-initial-capability_thumb.jpeg",
+        "pages": [
+            "images/hls-initial-capability_page1.png",
+            "images/hls-initial-capability_page2.png"
+        ]
+    },
+    "ml2": {
+        "thumb": "images/ml2_thumb.jpeg",
+        "pages": [
+            "images/ml2_page1.png",
+            "images/ml2_page2.png"
+        ]
+    },
+    "orion": {
+        "thumb": "images/orion_thumb.jpeg",
+        "pages": [
+            "images/orion_page1.png",
+            "images/orion_page2.png"
+        ]
+    },
+    "sep": {
+        "thumb": "images/sep_thumb.jpeg",
+        "pages": [
+            "images/sep_page1.png",
+            "images/sep_page2.png"
+        ]
+    },
+    "sls-block-1b": {
+        "thumb": "images/sls-block-1b_thumb.jpeg",
+        "pages": [
+            "images/sls-block-1b_page1.png",
+            "images/sls-block-1b_page2.png"
+        ]
+    },
+    "draco": {
+        "thumb": "images/draco_thumb.jpeg",
+        "pages": [
+            "images/draco_page1.png"
+        ]
+    },
+    "sbg-tir": {
+        "thumb": "images/sbg-tir_thumb.png",
+        "pages": [
+            "images/sbg-tir_page1.png"
+        ]
+    },
+    "msr": {
+        "thumb": "images/msr_thumb.jpeg",
+        "pages": [
+            "images/msr_page1.png"
+        ]
+    },
+    "usdv": {
+        "thumb": "images/usdv_thumb.jpeg",
+        "pages": [
+            "images/usdv_page1.png"
+        ]
+    },
+    "ccp": {
+        "thumb": "images/ccp_thumb.jpeg",
+        "pages": [
+            "images/ccp_page1.png",
+            "images/ccp_page2.png"
+        ]
+    },
+    "cosi": {
+        "thumb": "images/cosi_thumb.jpeg",
+        "pages": [
+            "images/cosi_page1.png"
+        ]
+    },
+    "dragonfly": {
+        "thumb": "images/dragonfly_thumb.jpeg",
+        "pages": [
+            "images/dragonfly_page1.png",
+            "images/dragonfly_page2.png"
+        ]
+    },
+    "epfd": {
+        "thumb": "images/epfd_thumb.jpeg",
+        "pages": [
+            "images/epfd_page1.png",
+            "images/epfd_page2.png"
+        ]
+    },
+    "grace-c": {
+        "thumb": "images/grace-c_thumb.jpeg",
+        "pages": [
+            "images/grace-c_page1.png"
+        ]
+    },
+    "imap": {
+        "thumb": "images/imap_thumb.jpeg",
+        "pages": [
+            "images/imap_page1.png",
+            "images/imap_page2.png"
+        ]
+    },
+    "lbfd": {
+        "thumb": "images/lbfd_thumb.jpeg",
+        "pages": [
+            "images/lbfd_page1.png",
+            "images/lbfd_page2.png"
+        ]
+    },
+    "muse": {
+        "thumb": "images/muse_thumb.jpeg",
+        "pages": [
+            "images/muse_page1.png"
+        ]
+    },
+    "neo-surveyor": {
+        "thumb": "images/neo-surveyor_thumb.jpeg",
+        "pages": [
+            "images/neo-surveyor_page1.png",
+            "images/neo-surveyor_page2.png"
+        ]
+    },
+    "nisar": {
+        "thumb": "images/nisar_thumb.jpeg",
+        "pages": [
+            "images/nisar_page1.png"
+        ]
+    },
+    "roman": {
+        "thumb": "images/roman_thumb.jpeg",
+        "pages": [
+            "images/roman_page1.png",
+            "images/roman_page2.png"
+        ]
+    },
+    "spherex": {
+        "thumb": "images/spherex_thumb.jpeg",
+        "pages": [
+            "images/spherex_page1.png",
+            "images/spherex_page2.png"
+        ]
+    }
+};
+  function thumbFor(id){ return (IMAGES[id] && IMAGES[id].thumb) || null; }
+  function pagesFor(id){ return (IMAGES[id] && IMAGES[id].pages) || null; }
+
+  // Deterministic starfield SVG for placeholder thumbs so each project gets a
+  // distinct but restrained image (no AI-illustration junk).
+  function starsSvg(){
+    // Use a seeded-looking static pattern to avoid moving "slop"
+    return `<svg viewBox="0 0 400 180" preserveAspectRatio="none" aria-hidden="true"
+      style="position:absolute;inset:0;width:100%;height:100%;opacity:.55">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#1a3f7a" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#050a1a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="180" fill="url(#glow)"/>
+      ${[
+        [28,22,1],[72,48,1.4],[118,18,1],[164,62,1.2],[210,28,1.6],[256,52,1],[302,22,1.2],[348,46,1],
+        [44,92,1],[92,110,1.4],[148,134,1],[188,108,1.2],[232,138,1.5],[278,102,1],[324,132,1.3],[374,108,1],
+        [14,156,1.1],[66,168,1],[134,162,1.3],[196,172,1],[258,160,1.2],[318,170,1],[372,158,1.1]
+      ].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity=".75"/>`).join("")}
+    </svg>`;
+  }
+
+  function statusLabel(color, project){
+    // Plain GAO-style label, driven by the backend status string. The
+    // numeric variance lives in the cost delta block, not duplicated here.
+    switch(project.status){
+      case "Within Baseline":       return "Within baseline";
+      case "Cost Growth":           return "Cost growth";
+      case "Schedule Slip":         return "Schedule slip";
+      case "Cost & Schedule Slip":  return "Cost & schedule slip";
+      case "Over Baseline":         return "Over baseline";
+      case "In Formulation":        return "In formulation";
+      case "Cancelled":             return "Cancelled";
+      case "Status Unknown":        return "Status unknown";
+      default:                      return project.status || "—";
+    }
+  }
+
+  function scheduleHealthLabel(h){
+    if (h === "on")     return "On schedule";
+    if (h === "behind") return "Behind schedule";
+    if (h === "ahead")  return "Ahead of schedule";
+    return "—";
+  }
+  function scheduleHealthColor(h){
+    if (h === "on")     return "green";
+    if (h === "behind") return "yellow";
+    if (h === "ahead")  return "green";
+    return "gray";
+  }
+
+  // State
+  const state = {
+    directorate: "all",
+    sort: "status",
+    search: "",
+    statusFilters: new Set()
+  };
+
+  // Seed directorate filter
+  (function initDirectorates(){
+    const set = new Set(projects.map(p=>p.directorate));
+    const sel = $("directorateFilter");
+    [...set].sort().forEach(d=>{
+      const o = document.createElement("option");
+      o.value = d; o.textContent = d;
+      sel.appendChild(o);
+    });
+  })();
+
+  // At-a-glance counts use directorate+search filtering (not status)
+  function baseFiltered(){
+    return projects.filter(p=>{
+      if (state.directorate !== "all" && p.directorate !== state.directorate) return false;
+      if (state.search){
+        const q = state.search.toLowerCase();
+        const hay = [p.name,p.title||"",p.leadCenter,p.directorate,p.summary].join(" ").toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function finalFiltered(){
+    return baseFiltered().filter(p=>{
+      if (state.statusFilters.size === 0) return true;
+      return state.statusFilters.has(p.statusColor);
+    });
+  }
+
+  const statusRank = { red:0, yellow:1, green:2, gray:3 };
+  function sortProjects(list){
+    const arr = list.slice();
+    if (state.sort === "status"){
+      arr.sort((a,b)=>{
+        const sa = statusRank[a.statusColor] ?? 9;
+        const sb = statusRank[b.statusColor] ?? 9;
+        if (sa !== sb) return sa - sb;
+        const va = (a.costData && a.costData.changePct) || 0;
+        const vb = (b.costData && b.costData.changePct) || 0;
+        if (va !== vb) return vb - va;
+        return a.name.localeCompare(b.name);
+      });
+    } else if (state.sort === "variance-desc"){
+      arr.sort((a,b)=>{
+        const va = (a.costData && a.costData.changePct) || 0;
+        const vb = (b.costData && b.costData.changePct) || 0;
+        if (va !== vb) return vb - va;
+        return a.name.localeCompare(b.name);
+      });
+    } else if (state.sort === "cost-desc"){
+      arr.sort((a,b)=>{
+        const va = (a.costData && a.costData.current) || 0;
+        const vb = (b.costData && b.costData.current) || 0;
+        if (va !== vb) return vb - va;
+        return a.name.localeCompare(b.name);
+      });
+    } else if (state.sort === "name"){
+      arr.sort((a,b)=>a.name.localeCompare(b.name));
+    } else if (state.sort === "directorate"){
+      arr.sort((a,b)=> a.directorate.localeCompare(b.directorate) || a.name.localeCompare(b.name));
+    }
+    return arr;
+  }
+
+  // At-a-glance
+  function renderGlance(){
+    const base = baseFiltered();
+    const counts = { green:0, yellow:0, red:0, gray:0 };
+    let totalBudget = 0;
+    let anyCost = false;
+    base.forEach(p=>{
+      counts[p.statusColor] = (counts[p.statusColor]||0) + 1;
+      if (p.costData && p.costData.current){ totalBudget += p.costData.current; anyCost = true; }
+    });
+    const el = $("atGlance");
+    const totalLabel = state.directorate === "all"
+      ? "Projects tracked"
+      : "Projects in this directorate";
+    el.innerHTML = `
+      <div class="glance-lede">
+        <div class="lede-label">Combined life-cycle cost</div>
+        <div class="lede-value">${anyCost ? "$"+totalBudget.toFixed(1)+"B" : "—"}</div>
+        <div class="lede-sub">${base.length} ${totalLabel.toLowerCase()} · current estimates</div>
+      </div>
+      ${statTile("green",  counts.green,  "Within baseline",       "On cost &amp; schedule")}
+      ${statTile("yellow", counts.yellow, "Watch list",            "Cost growth or pre-baseline")}
+      ${statTile("red",    counts.red,    "Over baseline",         "Congressional attention")}
+      ${statTile("gray",   counts.gray,   "Inactive / unknown",    "Cancelled or no baseline data")}
+    `;
+    el.querySelectorAll(".stat[data-color]").forEach(node=>{
+      node.addEventListener("click", ()=>{
+        const c = node.dataset.color;
+        if (state.statusFilters.has(c)) state.statusFilters.delete(c);
+        else state.statusFilters.add(c);
+        renderAll();
+      });
+    });
+  }
+  function statTile(color, value, label, sub){
+    const active = state.statusFilters.has(color) ? " active" : "";
+    return `
+      <div class="stat ${color}${active}" data-color="${color}" role="button" tabindex="0" aria-pressed="${state.statusFilters.has(color)}">
+        <div class="stat-top">
+          <span class="stat-chip" aria-hidden="true"></span>
+          <span class="stat-label">${label}</span>
+        </div>
+        <div class="stat-value">${value}</div>
+        <div class="stat-sub">${sub}</div>
+      </div>`;
+  }
+
+  // Grid of cards
+  function renderGrid(){
+    const list = sortProjects(finalFiltered());
+    const grid = $("grid");
+    const noResults = $("noResults");
+    $("resultCount").innerHTML = `Showing <strong>${list.length}</strong> of <strong>${projects.length}</strong> projects`;
+
+    // Section head note
+    $("sectionTitle").textContent = state.statusFilters.size
+      ? `Filtered: ${[...state.statusFilters].map(c=>({green:"Within baseline",yellow:"Watch list",red:"Over baseline",gray:"Inactive / unknown"}[c])).join(" · ")}`
+      : "All projects";
+
+    if (list.length === 0){
+      grid.style.display="none"; noResults.style.display="block"; return;
+    }
+    grid.style.display="grid"; noResults.style.display="none";
+
+    grid.innerHTML = list.map(cardHtml).join("");
+    grid.querySelectorAll(".card").forEach(c=>{
+      c.addEventListener("click", ()=> openModal(c.dataset.id));
+      c.addEventListener("keydown", (e)=>{
+        if (e.key === "Enter" || e.key === " "){ e.preventDefault(); openModal(c.dataset.id); }
+      });
+    });
+  }
+
+  function cardHtml(p){
+    const cd = p.costData;
+
+    // Cost delta
+    let costDeltaHtml = "";
+    if (cd){
+      const hasVar = Math.abs(cd.changePct) > 0.5;
+      const up = hasVar && cd.changePct > 0;
+      const colorClass = !hasVar ? "green" : up ? "red" : "green";
+      const valueText = hasVar
+        ? (up ? "+"+cd.changePct.toFixed(1)+"%" : cd.changePct.toFixed(1)+"%")
+        : "On budget";
+      costDeltaHtml = `<div class="delta ${colorClass}">${valueText}<small>cost vs baseline</small></div>`;
+    }
+
+    // Schedule delta — prefer real slip months from the gauge marker,
+    // fall back to the gauge's "ON/BEHIND/AHEAD" label, fall back to a
+    // pre-baseline placeholder for formulation projects.
+    let scheduleDeltaHtml = "";
+    const slipM = p.scheduleSlipMonths;
+    const sColor = scheduleHealthColor(p.scheduleHealth);
+    if (slipM !== null && slipM !== undefined){
+      let value;
+      if (Math.abs(slipM) <= 1) value = "On schedule";
+      else if (slipM < 0)       value = `${slipM} mo`;
+      else                      value = `+${slipM} mo`;
+      scheduleDeltaHtml = `<div class="delta ${sColor}">${value}<small>schedule vs baseline</small></div>`;
+    } else if (p.scheduleHealth){
+      scheduleDeltaHtml = `<div class="delta ${sColor}">${scheduleHealthLabel(p.scheduleHealth)}<small>schedule signal</small></div>`;
+    } else {
+      scheduleDeltaHtml = `<div class="delta">Pre-baseline<small>no schedule gauge</small></div>`;
+    }
+
+    const kpi = cd ? `
+      <div class="kpi">
+        <div class="k-col">
+          <span class="k-label">Baseline${cd.baselineDate ? " · "+escapeHtml(cd.baselineDate) : ""}</span>
+          <span class="k-val">${fmtMoney(cd.baseline)}</span>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="k-col" style="text-align:right">
+          <span class="k-label">Current estimate</span>
+          <span class="k-val">${fmtMoney(cd.current)}</span>
+        </div>
+      </div>
+    ` : `
+      <div class="kpi none">Cost baseline not yet established</div>
+    `;
+
+    const thumbSrc = thumbFor(p.id);
+    const thumb = thumbSrc
+      ? `<div class="card-thumb"><img src="${thumbSrc}" alt="" loading="lazy"></div>`
+      : `<div class="card-thumb placeholder">
+           ${starsSvg()}
+           <span style="position:relative;z-index:1">${escapeHtml(p.name)}</span>
+         </div>`;
+
+    return `
+    <article class="card ${p.statusColor}" data-id="${p.id}" tabindex="0" role="button" aria-label="Open details for ${escapeHtml(p.name)}">
+      ${thumb}
+      <div class="card-head">
+        <div class="acronym">${escapeHtml(p.name)}</div>
+        <div class="title">${escapeHtml(p.title || "")}</div>
+      </div>
+      <div class="card-body">
+        <div class="status-row">
+          <span class="status-pill ${p.statusColor}"><span class="dot"></span>${escapeHtml(statusLabel(p.statusColor, p))}</span>
+          <div class="deltas">
+            ${costDeltaHtml}
+            ${scheduleDeltaHtml}
+          </div>
+        </div>
+        ${kpi}
+        <div class="meta">
+          <div class="m-row"><span class="m-label">Lead Center</span><span class="m-val" title="${escapeHtml(p.leadCenter)}">${escapeHtml(p.leadCenter)}</span></div>
+          <div class="m-row"><span class="m-label">Directorate</span><span class="m-val" title="${escapeHtml(p.directorate)}">${escapeHtml(p.directorate.replace("Exploration Systems Development","Exploration Systems"))}</span></div>
+          <div class="m-row"><span class="m-label">Launch Vehicle</span><span class="m-val" title="${escapeHtml(p.launchVehicle)}">${escapeHtml(p.launchVehicle || "—")}</span></div>
+          <div class="m-row"><span class="m-label">Mission Duration</span><span class="m-val" title="${escapeHtml(p.missionDuration)}">${escapeHtml(p.missionDuration || "—")}</span></div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="ref">GAO-25-107591 · pp. ${p.pages[0]}–${p.pages[1]}</span>
+        <span class="open">View full summary</span>
+      </div>
+    </article>`;
+  }
+
+  // Modal
+  let currentChart = null;
+  function openModal(id){
+    const p = projects.find(x=>x.id===id);
+    if (!p) return;
+    const head = $("modalHead");
+    head.classList.remove("green","yellow","red","gray");
+    head.classList.add(p.statusColor);
+
+    $("modalEyebrow").textContent = `GAO-25-107591 · pp. ${p.pages[0]}–${p.pages[1]} · ${p.directorate}`;
+    $("modalTitle").textContent = p.name;
+    $("modalSubtitle").textContent = p.title || "";
+
+    const pill = $("modalStatusPill");
+    pill.classList.remove("green","yellow","red","gray");
+    pill.classList.add(p.statusColor);
+    $("modalStatusText").textContent = statusLabel(p.statusColor, p);
+
+    $("modalBody").innerHTML = modalBodyHtml(p);
+    wireModalTabs();
+
+    $("modalOverlay").classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    setTimeout(()=>renderCostChart(p), 60);
+  }
+  function wireModalTabs(){
+    const body = $("modalBody");
+    const tabs = body.querySelectorAll(".mod-tab");
+    const panels = body.querySelectorAll(".tab-panel");
+    if (!tabs.length) return;
+    tabs.forEach(tab=>{
+      tab.addEventListener("click", ()=>{
+        const name = tab.getAttribute("data-tab");
+        tabs.forEach(t=>{
+          const active = t===tab;
+          t.classList.toggle("active", active);
+          t.setAttribute("aria-selected", active ? "true":"false");
+        });
+        panels.forEach(pn=>{
+          pn.classList.toggle("active", pn.getAttribute("data-panel")===name);
+        });
+        // scroll modal body to top when switching tabs
+        body.scrollTo({top:0});
+      });
+    });
+  }
+  function closeModal(){
+    $("modalOverlay").classList.remove("active");
+    document.body.style.overflow = "";
+    if (currentChart){ currentChart.destroy(); currentChart = null; }
+  }
+
+  function modalBodyHtml(p){
+    const info = [
+      ["Lead Center", p.leadCenter],
+      ["Mission Directorate", p.directorate],
+      ["International Partners", p.partners],
+      ["Launch Location", p.launchLocation || "—"],
+      ["Launch Vehicle", p.launchVehicle || "—"],
+      ["Mission Duration", p.missionDuration || "—"]
+    ].map(([l,v])=>`<div class="info-item"><div class="lbl">${escapeHtml(l)}</div><div class="val">${escapeHtml(v)}</div></div>`).join("");
+
+    // Split summary into paragraphs on sentence breaks ~every 2-3 sentences
+    const paragraphs = splitParagraphs(p.summary);
+
+    const risks = (p.risks||[]).map(r=>{
+      const m = r.match(/^\s*\[(Technical|Schedule|Cost)\]\s*(.*)$/i);
+      let type = "technical", body = r;
+      if (m){
+        type = m[1].toLowerCase();
+        body = m[2];
+      }
+      // Body starts "Title: detail"
+      const colon = body.indexOf(":");
+      let title = "", detail = body;
+      if (colon > -1){
+        title = body.slice(0, colon).trim();
+        detail = body.slice(colon+1).trim();
+      }
+      return `<li class="${type}">
+        <span class="rtag">${type}</span>
+        ${title ? `<span class="rtitle">${escapeHtml(title)}.</span> ` : ""}
+        ${escapeHtml(detail)}
+      </li>`;
+    }).join("");
+
+    const costStatus = p.costStatus ? escapeHtml(p.costStatus) : "";
+    const schedStatus = p.scheduleStatus ? escapeHtml(p.scheduleStatus) : "";
+
+    const pages = pagesFor(p.id);
+    const reportTab = pages ? `
+      <div class="tab-panel" data-panel="report">
+        <div class="report-viewer">
+          ${pages.map((src,i)=>`
+            <figure class="report-page">
+              <img src="${src}" alt="Page ${p.pages[0]+i} of GAO-25-107591 coverage of ${escapeHtml(p.name)}">
+              <div class="report-page-label">GAO-25-107591 · p. ${p.pages[0]+i}</div>
+            </figure>`).join("")}
+        </div>
+      </div>` : "";
+
+    const tabsHeader = `
+      <div class="mod-tabs" role="tablist">
+        <button class="mod-tab active" role="tab" aria-selected="true" data-tab="summary">Dashboard summary</button>
+        ${pages ? `<button class="mod-tab" role="tab" aria-selected="false" data-tab="report">Original report <span class="tab-badge">${pages.length} pp.</span></button>` : ""}
+      </div>`;
+
+    return `
+      ${tabsHeader}
+      <div class="tab-panel active" data-panel="summary">
+      <div class="mod-section">
+        <h3>Project summary</h3>
+        <div class="summary-body">${paragraphs.map(pg=>`<p>${escapeHtml(pg)}</p>`).join("")}</div>
+      </div>
+
+      ${timelineHtml(p)}
+
+      <div class="mod-section">
+        <h3>Cost &amp; schedule status</h3>
+        <div class="cs-cards">
+          <div class="cs-card ${costStatus?"":"empty"}">
+            <h4>Cost</h4>
+            <p>${costStatus || "Not reported in quick-look excerpt."}</p>
+          </div>
+          <div class="cs-card ${schedStatus?"":"empty"}">
+            <h4>Schedule</h4>
+            <p>${schedStatus || "Not reported in quick-look excerpt."}</p>
+          </div>
+        </div>
+        ${bulletBarHtml(p)}
+      </div>
+
+      <div class="mod-section">
+        <h3>Cost performance</h3>
+        ${p.costData
+          ? `<div class="cost-chart-wrap"><canvas id="costChart-${p.id}"></canvas></div>`
+          : `<div class="no-cost-data">Cost baseline not yet established for this project.</div>`}
+      </div>
+
+      <div class="mod-section">
+        <h3>Project information</h3>
+        <div class="info-grid">${info}</div>
+      </div>
+
+      <div class="mod-section">
+        <h3>Key risks</h3>
+        <ul class="risks">${risks}</ul>
+      </div>
+      </div>
+      ${reportTab}
+    `;
+  }
+
+  // Render the project lifecycle timeline as a horizontal sequence of
+  // dated phase markers — extracted from the page-1 banner image.
+  // Color coding follows the GAO PDF: gold = formulation, teal =
+  // implementation, navy dot = KDP-C transition.
+  function timelineHtml(p){
+    const tl = p.timeline || [];
+    if (tl.length === 0) return "";
+    const hasGold = tl.some(e => e.phase === "formulation");
+    const hasKdp  = tl.some(e => e.phase === "kdp");
+    const hasTeal = tl.some(e => e.phase === "implementation");
+    const items = tl.map((e) => {
+      const phase = e.phase || "implementation";
+      const cls = `${phase}${e.date ? "" : " undated"}`;
+      return `
+        <li class="tl-item ${cls}">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-date">${e.date ? escapeHtml(e.date) : "—"}</div>
+          <div class="tl-label">${escapeHtml(e.label)}</div>
+        </li>`;
+    }).join("");
+    const legendBits = [];
+    if (hasGold) legendBits.push(`<span class="lg-key"><span class="lg-swatch formulation"></span>Formulation</span>`);
+    if (hasKdp)  legendBits.push(`<span class="lg-key"><span class="lg-swatch kdp"></span>Key Decision Point C</span>`);
+    if (hasTeal) legendBits.push(`<span class="lg-key"><span class="lg-swatch implementation"></span>Implementation</span>`);
+    const legend = legendBits.length
+      ? `<div class="tl-legend">${legendBits.join("")}</div>`
+      : "";
+    return `
+      <div class="mod-section">
+        <h3>Lifecycle timeline</h3>
+        <ol class="tl">${items}</ol>
+        ${legend}
+      </div>
+    `;
+  }
+
+  // Render the project's schedule milestones as a horizontal timeline.
+  // We show whichever milestones the parser emitted (KDP-C, Baseline LRD,
+  // Latest LRD), colored by the gauge's on/behind/ahead label.
+  function bulletBarHtml(p){
+    const ms = (p.keyMilestones || []).map(m => ({
+      event: m.event || "",
+      date:  parseMonYear(m.date),
+      raw:   m.date,
+    })).filter(m => m.date);
+
+    if (ms.length < 1) return "";
+
+    const color = scheduleHealthColor(p.scheduleHealth);
+    const slipM = p.scheduleSlipMonths;
+    let headline;
+    if (slipM !== null && slipM !== undefined){
+      if (Math.abs(slipM) <= 1)      headline = "On schedule";
+      else if (slipM < 0)            headline = `${Math.abs(slipM)} mo ahead of baseline`;
+      else                           headline = `${slipM} mo behind baseline`;
+    } else {
+      headline = scheduleHealthLabel(p.scheduleHealth);
+    }
+
+    const minMs = Math.min(...ms.map(m => m.date.getTime()));
+    const maxMs = Math.max(...ms.map(m => m.date.getTime()));
+    const pad = 1000*60*60*24*180;
+    const lo = minMs - pad;
+    const hi = (maxMs === minMs ? maxMs + pad*2 : maxMs) + pad;
+    const span = Math.max(hi - lo, 1);
+    const pct = (d) => ((d.getTime() - lo) / span * 100).toFixed(2) + "%";
+
+    const tickHtml = ms.map((m, i) => {
+      const isLatest = m.event.toLowerCase().includes("latest");
+      const cls = isLatest ? `current ${color}` : "baseline";
+      return `<div class="bullet-tick ${cls}" style="left:${pct(m.date)}"></div>
+              <div class="bullet-label" style="left:${pct(m.date)}">${escapeHtml(m.event)}<strong>${fmtDate(m.date)}</strong></div>`;
+    }).join("");
+
+    // Bar from earliest to latest milestone
+    const earliest = ms.reduce((a,b) => a.date < b.date ? a : b);
+    const latest = ms.reduce((a,b) => a.date > b.date ? a : b);
+
+    return `
+      <div class="bullet-wrap">
+        <div class="bullet-head">
+          <span class="b-event">Schedule timeline</span>
+          <span class="slip-pill ${color}">
+            <span class="slip-icon" aria-hidden="true">⌛</span>${escapeHtml(headline)}
+          </span>
+        </div>
+        <div class="bullet-track" style="height:50px">
+          <div class="bullet-axis"></div>
+          <div class="bullet-bar ${color}" style="left:${pct(earliest.date)};width:calc(${pct(latest.date)} - ${pct(earliest.date)});"></div>
+          ${tickHtml}
+        </div>
+        <div class="bullet-legend">
+          <span style="font-style:italic;color:var(--ink-3)">Dates extracted from the page-1 schedule gauge.</span>
+        </div>
+      </div>
+    `;
+  }
+
+  function splitParagraphs(text){
+    if (!text) return [];
+    // Prefer the source's own paragraph boundaries (blank-line separated).
+    if (text.includes("\n\n")){
+      return text.split(/\n{2,}/).map(s => s.replace(/\s+/g," ").trim()).filter(Boolean);
+    }
+    // Legacy fallback for older summaries that arrived as a single line:
+    // group every 3 sentences so the wall-of-text still gets some breathing room.
+    const sents = text.replace(/\s+/g," ").trim().match(/[^.!?]+[.!?]+["')\]]*|\s*\S+\s*$/g) || [text];
+    const out = [];
+    for (let i=0;i<sents.length;i+=3){
+      out.push(sents.slice(i,i+3).join(" ").trim());
+    }
+    return out;
+  }
+
+  function renderCostChart(p){
+    if (!p.costData) return;
+    const ctx = document.getElementById(`costChart-${p.id}`);
+    if (!ctx) return;
+    if (currentChart){ currentChart.destroy(); }
+
+    const cd = p.costData;
+    const baselineM = cd.baseline * 1000;
+    const currentM  = cd.current  * 1000;
+    const changePct = cd.changePct || ((currentM/baselineM - 1) * 100);
+    const hasOverrun = changePct > 0.5;
+    const hasUnderrun = changePct < -0.5;
+
+    let statusLabel, statusColor;
+    if (hasOverrun){ statusLabel = `+${changePct.toFixed(1)}% over baseline`; statusColor = "#a6231a"; }
+    else if (hasUnderrun){ statusLabel = `${changePct.toFixed(1)}% under baseline`; statusColor = "#1f7a3a"; }
+    else { statusLabel = "On budget (within 0.5%)"; statusColor = "#1f7a3a"; }
+
+    const baselineLabel = cd.baselineDate ? `Baseline · ${cd.baselineDate}` : "Baseline";
+    const currentLabel = "Current est. · Jan. 2025";
+
+    currentChart = new Chart(ctx, {
+      type:"bar",
+      data:{
+        labels:[baselineLabel, currentLabel],
+        datasets:[{
+          data:[baselineM, currentM],
+          backgroundColor:[ "#0b3d91", hasOverrun ? "#a6231a" : "#1f7a3a" ],
+          borderWidth:0,
+          borderRadius:4,
+          barThickness:80
+        }]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        plugins:{
+          legend:{display:false},
+          title:{
+            display:true, text:statusLabel, color:statusColor,
+            font:{ family:"'Source Serif 4', Georgia, serif", size:18, weight:"600" },
+            padding:{bottom:14}
+          },
+          tooltip:{
+            backgroundColor:"#13181f",
+            titleFont:{size:13,weight:"600"},
+            bodyFont:{size:14},
+            padding:10,
+            callbacks:{
+              label:(ctx)=> "$" + ctx.raw.toLocaleString("en-US",{maximumFractionDigits:1}) + "M"
+            }
+          }
+        },
+        scales:{
+          y:{
+            beginAtZero:true,
+            grid:{ color:"#e4ddcc" },
+            ticks:{
+              color:"#5d6b7a",
+              font:{size:13},
+              callback:(v)=> v >= 1000 ? "$"+(v/1000).toFixed(1)+"B" : "$"+v.toLocaleString()+"M"
+            }
+          },
+          x:{
+            grid:{display:false},
+            ticks:{ color:"#31404f", font:{size:13, weight:"600"} }
+          }
+        }
+      }
+    });
+  }
+
+  // Wire events
+  $("directorateFilter").addEventListener("change", (e)=>{ state.directorate = e.target.value; renderAll(); });
+  $("sortBy").addEventListener("change", (e)=>{ state.sort = e.target.value; renderGrid(); });
+  $("searchInput").addEventListener("input", (e)=>{ state.search = e.target.value; renderAll(); });
+  $("modalClose").addEventListener("click", closeModal);
+  $("modalOverlay").addEventListener("click", (e)=>{ if (e.target.id === "modalOverlay") closeModal(); });
+  document.addEventListener("keydown", (e)=>{ if (e.key === "Escape") closeModal(); });
+
+  function renderAll(){ renderGlance(); renderSwimlane(); renderGrid(); }
+
+  // ───────── Swim-lane (#4) ─────────
+  // Each row plots a project's KDP-C → Latest LRD interval. The bar/dot
+  // colour reflects the schedule_health label from the gauge (on/behind/
+  // ahead), not a numeric slip — see notes in bulletBarHtml above.
+  function renderSwimlane(){
+    const rows = [];
+    for (const p of baseFiltered()){
+      const ms = p.keyMilestones || [];
+      if (ms.length < 1) continue;
+      const a = parseMonYear(ms[0] && ms[0].date);
+      const b = parseMonYear((ms[1] && ms[1].date) || (ms[0] && ms[0].date));
+      if (!a || !b) continue;
+      rows.push({ p, start: a, end: b });
+    }
+    if (rows.length === 0){
+      $("swimAxis").innerHTML = "";
+      $("swimBody").innerHTML = `<div style="color:var(--ink-3);font-size:13px;padding:12px 0">No projects with parsed schedule milestones match the current filter.</div>`;
+      return;
+    }
+    rows.sort((a, b) => a.end - b.end);
+
+    let lo = Infinity, hi = -Infinity;
+    for (const r of rows){
+      lo = Math.min(lo, r.start.getTime(), r.end.getTime());
+      hi = Math.max(hi, r.start.getTime(), r.end.getTime());
+    }
+    const yearMs = 365.25*24*3600*1000;
+    lo -= 0.25*yearMs;
+    hi += 0.25*yearMs;
+    const span = hi - lo;
+    const pct = (d)=> ((d.getTime() - lo) / span * 100).toFixed(2) + "%";
+
+    const startYear = new Date(lo).getFullYear();
+    const endYear = new Date(hi).getFullYear();
+    let axisHtml = "";
+    for (let y = startYear; y <= endYear; y++){
+      const d = new Date(y, 0, 1);
+      if (d.getTime() < lo || d.getTime() > hi) continue;
+      axisHtml += `<span class="swim-year" style="left:${pct(d)}">${y}</span>`;
+    }
+    $("swimAxis").innerHTML = `<div class="swim" style="row-gap:0">
+      <div></div><div style="position:relative;height:22px">${axisHtml}</div><div></div>
+    </div>`;
+
+    $("swimBody").innerHTML = rows.map(({p, start, end}) => {
+      const color = scheduleHealthColor(p.scheduleHealth);
+      const barLeft = pct(new Date(Math.min(start.getTime(), end.getTime())));
+      const barRight = pct(new Date(Math.max(start.getTime(), end.getTime())));
+      const slipM = p.scheduleSlipMonths;
+      let tag;
+      if (slipM !== null && slipM !== undefined){
+        if (Math.abs(slipM) <= 1) tag = "On";
+        else if (slipM < 0)       tag = `${slipM} mo`;
+        else                      tag = `+${slipM} mo`;
+      } else {
+        tag = scheduleHealthLabel(p.scheduleHealth);
+        if (tag === "—") tag = "";
+        else tag = tag.replace(" of schedule","").replace(" schedule","");
+      }
+      return `
+        <div class="swim-name" title="${escapeHtml(p.title || p.name)}">${escapeHtml(p.name)}</div>
+        <div class="swim-track">
+          <div class="swim-bar ${color}" style="left:${barLeft};width:calc(${barRight} - ${barLeft})"></div>
+          <div class="swim-dot baseline" style="left:${pct(start)}" title="${escapeHtml((p.keyMilestones && p.keyMilestones[0] && p.keyMilestones[0].event) || "Baseline")} ${fmtDate(start)}"></div>
+          <div class="swim-dot current ${color}" style="left:${pct(end)}" title="Latest estimate ${fmtDate(end)}"></div>
+        </div>
+        <div class="swim-slip ${color}">${tag}</div>`;
+    }).join("");
+  }
+
+  renderAll();
+})();
+
+</script>
+</body>
+</html>
