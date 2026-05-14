@@ -669,6 +669,7 @@
   .modal-head.gray .accent  {background:var(--st-gray)}
   .modal-head .title-wrap{flex:1;min-width:0;position:relative;z-index:1}
   .modal-head .eyebrow{font-family:'Roboto Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:6px}
+  .modal-head .eyebrow a{color:inherit;text-decoration:underline;text-underline-offset:3px}
   .modal-head h2{
     font-family:'Public Sans',system-ui,sans-serif;
     font-weight:800;font-size:34px;line-height:1.1;letter-spacing:-.01em;color:#fff;
@@ -825,12 +826,15 @@
   .report-page-label{
     background:var(--paper);padding:10px 16px;font-size:13px;color:var(--ink-2);
     border-top:1px solid var(--rule-2);font-weight:600;letter-spacing:.02em;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
   }
+  .report-page-label a{font-weight:700}
   .report-missing{
     padding:40px 24px;background:var(--paper);border:1px dashed var(--rule);border-radius:4px;
     text-align:center;color:var(--ink-2);
   }
   .report-missing strong{display:block;font-family:'Public Sans',system-ui,sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .pdf-link{font-weight:700}
 
   @media (max-width:1100px){
     .atglance-inner{grid-template-columns:1fr 1fr 1fr;}
@@ -7442,6 +7446,7 @@ window.HISTORY = {
 (function(){
   const projects = window.PROJECTS;
   const history = window.HISTORY || null;
+  const GAO_PDF_URL = "https://www.gao.gov/assets/gao-25-107591.pdf";
 
   // Helpers
   const $ = (id) => document.getElementById(id);
@@ -7452,6 +7457,7 @@ window.HISTORY = {
     return "$" + Math.round(b * 1000) + "M";
   };
   const escapeHtml = (s) => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const pdfPageUrl = (pdfIndex) => `${GAO_PDF_URL}#page=${Number(pdfIndex) + 1}`;
   const historyById = new Map((history && history.projects ? history.projects : []).map(p=>[p.id, p]));
   const historyYears = history && history.metadata && history.metadata.years ? history.metadata.years : [];
   const latestHistoryYear = history && history.validation ? history.validation.latestYear : (historyYears.length ? historyYears[historyYears.length - 1] : null);
@@ -8052,7 +8058,7 @@ window.HISTORY = {
         </div>
       </div>
       <div class="card-foot">
-        <span class="ref">GAO-25-107591 · pp. ${p.pages[0]}–${p.pages[1]}</span>
+        <a class="ref pdf-link" href="${pdfPageUrl(p.pages[0])}" target="_blank" rel="noopener" onclick="event.stopPropagation()">GAO-25-107591 · PDF p. ${p.pages[0]+1}</a>
         <span class="open">View full summary</span>
       </div>
     </article>`;
@@ -8070,7 +8076,7 @@ window.HISTORY = {
     head.classList.toggle("no-thumb", !thumbSrc);
     head.style.backgroundImage = thumbSrc ? `url("${thumbSrc}")` : "";
 
-    $("modalEyebrow").textContent = `GAO-25-107591 · pp. ${p.pages[0]}–${p.pages[1]} · ${p.directorate}`;
+    $("modalEyebrow").innerHTML = `<a href="${pdfPageUrl(p.pages[0])}" target="_blank" rel="noopener">GAO-25-107591 · PDF p. ${p.pages[0]+1}</a> · ${escapeHtml(p.directorate)}`;
     $("modalTitle").textContent = p.name;
     $("modalSubtitle").textContent = p.title || "";
 
@@ -8237,7 +8243,10 @@ window.HISTORY = {
           ${pages.map((src,i)=>`
             <figure class="report-page">
               <img src="${src}" alt="Page ${p.pages[0]+i} of GAO-25-107591 coverage of ${escapeHtml(p.name)}">
-              <div class="report-page-label">GAO-25-107591 · p. ${p.pages[0]+i}</div>
+              <div class="report-page-label">
+                <span>GAO-25-107591 · PDF p. ${p.pages[0]+i+1}</span>
+                <a href="${pdfPageUrl(p.pages[0]+i)}" target="_blank" rel="noopener">Open live PDF page</a>
+              </div>
             </figure>`).join("")}
         </div>
       </div>` : "";
