@@ -12,7 +12,9 @@
 
   gtag('config', 'G-Z3FES677F7');
 </script>
-<title>NASA Major Projects Dashboard — Quick Look (GAO-25-107591)</title>
+<title>UNOFFICIAL AI-Generated Mockup — NASA Major Projects Quick Look</title>
+<meta name="description" content="Unofficial, AI-generated demonstration mockup. This is NOT a government website and is not affiliated with, endorsed by, or produced by GAO, NASA, or any U.S. government agency. Figures are illustrative and may be inaccurate.">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -61,6 +63,35 @@
     padding:0!important;margin:-1px!important;
     overflow:hidden!important;clip:rect(0,0,0,0)!important;
     white-space:nowrap!important;border:0!important;
+  }
+
+  /* ───────── MOCKUP DISCLAIMER ───────── */
+  .mockup-banner{
+    position:sticky;top:0;z-index:900;
+    background:#7c1615;
+    color:#fff;
+    border-bottom:4px solid #ffbe2e;
+  }
+  .mockup-inner{
+    max-width:1440px;margin:0 auto;padding:9px 32px;
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    font-size:13.5px;line-height:1.35;
+  }
+  .mockup-tag{
+    flex-shrink:0;
+    background:#ffbe2e;color:#1b1b1b;
+    font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 9px;
+  }
+  .mockup-text{color:rgba(255,255,255,.92)}
+  .mockup-text strong{color:#fff;font-weight:700}
+  .mockup-note{
+    max-width:1440px;margin:0 auto;padding:14px 32px 0;
+    font-size:13px;color:var(--ink-2);
+  }
+  .mockup-note div{
+    border-left:4px solid #7c1615;background:#fff;
+    padding:12px 16px;
   }
 
   /* ───────── HEADER ───────── */
@@ -635,6 +666,13 @@
     display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   }
 
+  .modal-disclaimer{
+    margin:28px 0 0;padding:12px 16px;
+    border-left:4px solid #7c1615;background:#faf3f2;
+    font-size:12.5px;line-height:1.45;color:var(--ink-2);
+  }
+  .modal-disclaimer strong{color:#7c1615}
+
   /* ───────── MODAL ───────── */
   .modal-overlay{
     display:none;position:fixed;inset:0;
@@ -854,6 +892,8 @@
     .history-list{grid-column:1/-1}
   }
   @media (max-width:720px){
+    .mockup-inner{padding:8px 14px;gap:8px;font-size:12.5px}
+    .mockup-note{padding:12px 14px 0}
     .agency-inner{padding:10px 18px}
     .masthead{padding:16px 14px}
     .atglance-inner{grid-template-columns:1fr 1fr;padding:16px 12px;gap:12px}
@@ -900,18 +940,25 @@
 </head>
 <body>
 
+<div class="mockup-banner" role="note" aria-label="Disclaimer">
+  <div class="mockup-inner">
+    <span class="mockup-tag">Not a government website</span>
+    <span class="mockup-text"><strong>This is an unofficial, AI-generated mockup.</strong> It is not affiliated with, endorsed by, or produced by GAO, NASA, or any U.S. government agency. Content is illustrative and may be inaccurate — do not rely on it.</span>
+  </div>
+</div>
+
 <header class="site">
   <div class="agency-strip">
     <div class="agency-inner">
-      <span class="agency-name">U.S. Government Accountability Office</span>
-      <span class="agency-meta">Report <strong>GAO-25-107591</strong> · Issued May 2025 · Prepared for Congressional Staff</span>
+      <span class="agency-name">Unofficial AI-Generated Demo · Not a U.S. Government Site</span>
+      <span class="agency-meta">Illustrative data adapted from public report <strong>GAO-25-107591</strong> (May 2025) · Not an official GAO or NASA product</span>
     </div>
   </div>
   <div class="masthead">
     <div class="brand">
-      <div class="seal" aria-hidden="true">NASA</div>
+      <div class="seal" aria-hidden="true">DEMO</div>
       <div>
-        <div class="eyebrow">Quick-Look Dashboard</div>
+        <div class="eyebrow">AI-Generated Mockup · Unofficial</div>
         <h1>NASA Major Projects</h1>
       </div>
     </div>
@@ -921,6 +968,11 @@
     </div>
   </div>
 </header>
+
+<!-- MOCKUP NOTE -->
+<div class="mockup-note">
+  <div><strong>Disclaimer:</strong> This page is a design mockup generated with AI for demonstration and visualization purposes only. It is <strong>not</strong> a government website, not an official publication, and carries no government authority. Figures, statuses, and narrative text are drawn from a public GAO report but have been machine-extracted and may contain errors or omissions. For authoritative information, consult <a href="https://www.gao.gov" target="_blank" rel="noopener">gao.gov</a> and <a href="https://www.nasa.gov" target="_blank" rel="noopener">nasa.gov</a> directly.</div>
+</div>
 
 <!-- AT-A-GLANCE -->
 <section class="atglance" aria-label="At a glance">
@@ -984,8 +1036,8 @@
 </main>
 
 <footer class="site">
-  <div>Data source: <a href="https://www.gao.gov" target="_blank" rel="noopener">U.S. Government Accountability Office</a> · GAO-25-107591</div>
-  <div>Demonstration dashboard for visualization purposes.</div>
+  <div>Source material: public report <a href="https://www.gao.gov" target="_blank" rel="noopener">GAO-25-107591</a> (U.S. Government Accountability Office). Reproduced here without endorsement.</div>
+  <div><strong>Unofficial AI-generated mockup — not a government website.</strong> No affiliation with GAO, NASA, or any U.S. government agency.</div>
 </footer>
 
 <!-- MODAL -->
@@ -8311,6 +8363,10 @@ window.HISTORY = {
       </div>
       ${historyPanel}
       ${reportTab}
+      <div class="modal-disclaimer">
+        <strong>Unofficial AI-generated mockup — not a government website.</strong>
+        Machine-extracted from public report GAO-25-107591; may contain errors. Not affiliated with or endorsed by GAO, NASA, or any U.S. government agency.
+      </div>
     `;
   }
 
